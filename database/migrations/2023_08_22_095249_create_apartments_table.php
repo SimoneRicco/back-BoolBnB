@@ -11,6 +11,8 @@ return new class extends Migration
     {
         Schema::create('apartments', function (Blueprint $table) {
             $table->id();
+
+            $table->string('slug', 50)->unique();
             $table->string('title', 100);
             $table->tinyInteger('rooms');
             $table->tinyInteger('beds');
@@ -18,12 +20,7 @@ return new class extends Migration
             $table->smallInteger('square_meters');
             $table->string('address', 200);
             $table->boolean('visible');
-            // creo la colonna della chiave esterna
-
-            $table->unsignedBigInteger('user_id');
-            // definire la colonna come chiave esterna
-
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->softDeletes();
 
         });
     }
