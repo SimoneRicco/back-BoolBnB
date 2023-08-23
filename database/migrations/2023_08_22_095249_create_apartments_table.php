@@ -15,6 +15,8 @@ return new class extends Migration
     {
         Schema::create('apartments', function (Blueprint $table) {
             $table->id();
+
+            $table->string('slug', 50)->unique();
             $table->string('title', 100);
             $table->tinyInteger('rooms');
             $table->tinyInteger('beds');
@@ -22,17 +24,12 @@ return new class extends Migration
             $table->smallInteger('square_meters');
             $table->string('address', 200);
             $table->boolean('visible');
-            // $table->unsignedBigInteger('guests_id');
-            // $table->foreign('guests_id')->references('id')->on('guestsUsers');
+            $table->softDeletes();
 
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
+    
     public function down()
     {
         Schema::dropIfExists('apartments');

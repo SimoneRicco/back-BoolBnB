@@ -17,9 +17,12 @@ class ApartmentsTableSeeder extends Seeder
     {
         foreach (config('apartments') as $objApartment) {
 
+            $slug = Apartment::slugger($objApartment['title']);
+
 
             $apartment = Apartment::create([
                 'title'          => $objApartment['title'],
+                'slug'              => $slug,
                 'rooms'     => $objApartment['rooms'],
                 'beds'           => $objApartment['beds'],
                 'bathrooms'    => $objApartment['bathrooms'],
