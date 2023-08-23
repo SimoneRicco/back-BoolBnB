@@ -8,17 +8,14 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class ApartmentsTableSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
+    
     public function run()
     {
         foreach (config('apartments') as $objApartment) {
 
 
             $apartment = Apartment::create([
+                'user_id'           => $objApartment['user_id'],
                 'title'          => $objApartment['title'],
                 'rooms'     => $objApartment['rooms'],
                 'beds'           => $objApartment['beds'],

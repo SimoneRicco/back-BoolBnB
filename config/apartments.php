@@ -11,6 +11,7 @@ return
         'address' => 'Via Maratona, 9-11 00053 Civitavecchia RM',
         'visible' => 1,
         'utilities' => [1],
+        "user_id"       => "1",
     ],
     [
         'title' => 'loft nel centro città',
@@ -21,6 +22,7 @@ return
         'address' => 'Via Spadari, 2, 20123 Milano MI',
         'visible' => 1,
         'utilities' => [1],
+        "user_id"       => "1",
     ],
     [
         'title' => 'monolocale',
@@ -31,6 +33,7 @@ return
         'address' => 'Via Gian Domenico Cassini, 19, 10129 Torino TO',
         'visible' => 0,
         'utilities' => [1],
+        "user_id"       => "1",
     ],
     [
         'title' => 'trilocale in periferia',
@@ -41,6 +44,7 @@ return
         'address' => 'Via Albano, 33, 00179 Roma RM',
         'visible' => 1,
         'utilities' => [1],
+        "user_id"       => "1",
     ],
     [
         'title' => 'appartamento a due passi dall\'arno',
@@ -51,6 +55,7 @@ return
         'address' => 'Via del Franciabigio, 12, 50142 Firenze FI',
         'visible' => 1,
         'utilities' => [1],
+        "user_id"       => "1",
     ],
     [
         'title' => 'bilocale luminoso',
@@ -61,6 +66,7 @@ return
         'address' => 'Salita Antonio Giusti, 1017, 16124 Genova GE',
         'visible' => 0,
         'utilities' => [1],
+        "user_id"       => "1",
     ],
     [
         'title' => 'monolocale per studenti',
@@ -71,6 +77,7 @@ return
         'address' => 'Via Otto Colonne, 10, 40122 Bologna BO',
         'visible' => 0,
         'utilities' => [1],
+        "user_id"       => "1",
     ],
     [
         'title' => 'Baita sul Fiume',
@@ -81,6 +88,7 @@ return
         'address' => 'Via al Ponte, 1 46030 Borgo Virgilio MN',
         'visible' => 1,
         'utilities' => [1],
+        "user_id"       => "1",
     ],
     [
         'title' => 'Cottage sul lago',
@@ -91,6 +99,7 @@ return
         'address' => 'Desenzano del Garda, 25015 Provincia di Brescia',
         'visible' => 1,
         'utilities' => [1],
+        "user_id"       => "1",
     ],
     [
         'title' => 'Loft Bella Vita',
@@ -101,6 +110,7 @@ return
         'address' => 'Via Primo Cavallieri, 6, 16014 Campomorone GE',
         'visible' => 0,
         'utilities' => [1],
+        "user_id"       => "1",
     ],
     [
         'title' => 'Casa sul mare',
@@ -111,6 +121,7 @@ return
         'address' => 'Viale Sas Linnas Siccas, 8-42, 08028 Sas Linnas Siccas NU',
         'visible' => 1,
         'utilities' => [1],
+        "user_id"       => "1",
     ],
     [
         'title' => 'Casa sul mare',
@@ -121,5 +132,6 @@ return
         'address' => 'Viale Sas Linnas Siccas, 8-42, 08028 Sas Linnas Siccas NU',
         'visible' => 1,
         'utilities' => [1],
+        "user_id"       => "1",
     ],
 ];

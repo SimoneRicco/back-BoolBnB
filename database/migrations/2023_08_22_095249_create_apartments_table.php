@@ -6,11 +6,7 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
+    
     public function up()
     {
         Schema::create('apartments', function (Blueprint $table) {
@@ -22,20 +18,28 @@ return new class extends Migration
             $table->smallInteger('square_meters');
             $table->string('address', 200);
             $table->boolean('visible');
-            // $table->unsignedBigInteger('guests_id');
-            // $table->foreign('guests_id')->references('id')->on('guestsUsers');
+            // creo la colonna della chiave esterna
+
+            $table->unsignedBigInteger('user_id');
+            // definire la colonna come chiave esterna
+
+            $table->foreign('user_id')->references('id')->on('users');
 
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
+    
     public function down()
     {
-        Schema::dropIfExists('apartments');
+        Schema::table('apartments', function (Blueprint $table) {
+            // elimino la chiave esterna
+
+            $table->dropForeign('apartments_user_id_foreign');
+
+            // elimino la colonna
+
+            $table->dropColumn('user_id');
+        });
 
     }
 };

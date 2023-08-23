@@ -11,6 +11,12 @@ class Apartment extends Model
     use HasFactory;
     protected $table = 'apartments';
     public $timestamps = false;
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
    
     public function utilities() {
         return $this->belongsToMany(Utility::class);

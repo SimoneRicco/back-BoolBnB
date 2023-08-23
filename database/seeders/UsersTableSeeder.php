@@ -9,11 +9,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class UsersTableSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
+   
     public function run()
     {
         $users = [
@@ -34,6 +30,18 @@ class UsersTableSeeder extends Seeder
                 "email"     => "nicola.soggiu@gmail.com",
                 "password"  => Hash::make('nicola96'),
                 "image"     => "Nicola.png",
+            ],
+            [
+                "name"      => "Lamberto Neri",
+                "email"     => "lamberto9107@hotmail.it",
+                "password"  => Hash::make('Tato123'),
+                "image"     => "Lamberto.png",
+            ],
+            [
+                "name"      => "Simone Ricco",
+                "email"     => "smnrcc0@gmail.com",
+                "password"  => Hash::make('simo03'),
+                "image"     => "Simone.png",
             ],
         ];
 
