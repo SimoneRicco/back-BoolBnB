@@ -18,12 +18,20 @@ return new class extends Migration
             $table->tinyInteger('beds');
             $table->tinyInteger('bathrooms');
             $table->smallInteger('square_meters');
-            $table->string('address', 200);
-            $table->boolean('visible');
+            $table->boolean('available');
 
             $table->unsignedBigInteger('user_id');
-
+            $table->unsignedBigInteger('message_id');
+            $table->unsignedBigInteger('view_id');
+            $table->unsignedBigInteger('address_id');
+            $table->unsignedBigInteger('image_id');
+            
             $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('message_id')->references('id')->on('messages');
+            $table->foreign('view_id')->references('id')->on('views');
+            $table->foreign('address_id')->references('id')->on('addresses');
+            $table->foreign('image_id')->references('id')->on('images');
+           
             
             $table->softDeletes();
 
@@ -37,10 +45,19 @@ return new class extends Migration
             // elimino la chiave esterna
 
             $table->dropForeign('apartments_user_id_foreign');
+            $table->dropForeign('apartments_message_id_foreign');
+            $table->dropForeign('apartments_view_id_foreign');
+            $table->dropForeign('apartments_address_id_foreign');
+            $table->dropForeign('apartments_image_id_foreign');
+        
 
             // elimino la colonna
 
             $table->dropColumn('user_id');
+            $table->dropColumn('message_id');
+            $table->dropColumn('view_id');
+            $table->dropColumn('address_id');
+            $table->dropColumn('image_id'); 
         });
 
     }

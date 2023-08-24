@@ -9,15 +9,19 @@ return new class extends Migration
     
     public function up()
     {
-        Schema::create('utilities', function (Blueprint $table) {
+        Schema::create('messages', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 20);
+
+            $table->text('message');
+            $table->string('email')->unique();
+
+            $table->timestamps();
         });
     }
 
     
     public function down()
     {
-        Schema::dropIfExists('utilities');
+        Schema::dropIfExists('messages');
     }
 };

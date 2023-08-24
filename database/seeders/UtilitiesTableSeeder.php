@@ -8,11 +8,6 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class UtilitiesTableSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
     public function run()
     {
         foreach(config('utilities') as $objUtility) {

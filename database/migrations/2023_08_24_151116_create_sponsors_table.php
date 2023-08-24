@@ -9,15 +9,20 @@ return new class extends Migration
     
     public function up()
     {
-        Schema::create('utilities', function (Blueprint $table) {
+        Schema::create('sponsors', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 20);
+
+            $table->string('type', 50);
+            $table->integer('price');
+            $table->date('subscription_date');
+            
+            $table->timestamps();
         });
     }
 
     
     public function down()
     {
-        Schema::dropIfExists('utilities');
+        Schema::dropIfExists('sponsors');
     }
 };
