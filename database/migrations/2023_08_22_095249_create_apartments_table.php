@@ -20,6 +20,11 @@ return new class extends Migration
             $table->smallInteger('square_meters');
             $table->string('address', 200);
             $table->boolean('visible');
+
+            $table->unsignedBigInteger('user_id');
+
+            $table->foreign('user_id')->references('id')->on('users');
+            
             $table->softDeletes();
 
         });
