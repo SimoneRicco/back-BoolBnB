@@ -12,8 +12,8 @@ class View extends Model
 
     protected $table = 'views';
 
-    public function apartments()
+    public function apartment()
     {
-        return $this->hasMany(Apartment::class);
+        return $this->belongsTo(Apartment::class);
     }
 }

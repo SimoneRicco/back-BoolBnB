@@ -32,14 +32,14 @@ class Apartment extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function view()
+    public function views()
     {
-        return $this->belongsTo(View::class);
+        return $this->hasMany(View::class);
     }
 
-    public function message()
+    public function messages()
     {
-        return $this->belongsTo(Message::class);
+        return $this->hasMany(Message::class);
     }
 
     public function address()

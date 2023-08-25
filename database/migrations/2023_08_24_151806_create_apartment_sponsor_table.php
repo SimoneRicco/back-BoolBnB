@@ -11,7 +11,7 @@ return new class extends Migration
     {
         Schema::create('apartment_sponsor', function (Blueprint $table) {
 
-            $table->unsignedInteger('duration');
+            $table->integer('duration')->default(0);
             
             $table->unsignedBigInteger('apartment_id');
             $table->unsignedBigInteger('sponsor_id');

@@ -14,6 +14,8 @@ return new class extends Migration
 
             $table->string('ip_address', 100);
             $table->date('view_date');
+            $table->unsignedBigInteger('apartment_id');
+            $table->foreign('apartment_id')->references('id')->on('apartments');
 
             $table->timestamps();
         });

@@ -13,7 +13,9 @@ return new class extends Migration
             $table->id();
 
             $table->text('message');
-            $table->string('email')->unique();
+            $table->string('email');
+            $table->unsignedBigInteger('apartment_id');
+            $table->foreign('apartment_id')->references('id')->on('apartments');
 
             $table->timestamps();
         });
