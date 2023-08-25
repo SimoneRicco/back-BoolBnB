@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\View;
+use App\Models\Image;
+use App\Models\Address;
+use App\Models\Sponsor;
 use App\Models\Utility;
 use App\Models\Apartment;
 use Illuminate\Http\Request;
@@ -10,30 +14,37 @@ use Illuminate\Support\Facades\Storage;
 
 class ApartmentController extends Controller
 {
-    
+
     public function index()
     {
-        $apartments = Apartment::paginate(3);
+        $apartments = Apartment::paginate(5);
         return view('admin.apartments.index', compact('apartments'));
     }
 
-    
+
     public function create()
     {
         $utilities = Utility::all();
-        return view('Admin.apartments.create', compact('utilities'));
+        $images = Image::all();
+        $addresses = Address::all();
+        $views = View::all();
+        $sponsors = Sponsor::all();
+        return view('Admin.apartments.create', compact('utilities', 'images', 'addresses', 'views', 'sponsors'));
     }
 
-    
+
     public function store(Request $request)
     {
         // $request->validate($this->validations, $this->validations_messages);
         $data = $request->all();
-        
+
         // Salvare i dati nel database
         $newApartment = new apartment();
         $newApartment->title         = $data['title'];
         $newApartment->slug          = apartment::slugger($data['title']);
+        $newApartment->image_id      = $data['image_id'];
+        $newApartment->address_id      = $data['address_id'];
+        $newApartment->view_id      = $data['view_id'];
         $newApartment->rooms     = $data['rooms'];
         // if ($request->has('img')) {
         //     $imagePath = Storage::put('uploads', $data['img']);
@@ -47,26 +58,31 @@ class ApartmentController extends Controller
         $newApartment->save();
 
         $newApartment->utilities()->sync($data['utilities'] ?? []);
+        $newApartment->sponsors()->sync($data['sponsors'] ?? []);
 
         return redirect()->route('admin.apartments.show', ['apartment' => $newApartment]);
     }
 
-    
+
     public function show($slug)
     {
         $apartment = Apartment::where('slug', $slug)->firstOrFail();
         return view('admin.apartments.show', compact('apartment'));
     }
 
-    
+
     public function edit($slug)
     {
         $apartment = Apartment::where('slug', $slug)->firstOrFail();
         $utilities = Utility::all();
-        return view('admin.apartments.edit', compact('apartment', 'utilities'));
+        $images = Image::all();
+        $addresses = Address::all();
+        $views = View::all();
+        $sponsors = Sponsor::all();
+        return view('admin.apartments.edit', compact('apartment', 'utilities', 'images', 'addresses', 'views', 'sponsors'));
     }
 
-    
+
     public function update(Request $request, $slug)
     {
         $apartment = Apartment::where('slug', $slug)->firstOrFail();
@@ -80,7 +96,9 @@ class ApartmentController extends Controller
         //     }
         //     $apartment->img = $imagePath;
         // }
-
+        $apartment->image_id      = $data['image_id'];
+        $apartment->address_id      = $data['address_id'];
+        $apartment->view_id      = $data['view_id'];
         $apartment->title          = $data['title'];
         $apartment->rooms     = $data['rooms'];
         $apartment->beds    = $data['beds'];
@@ -91,11 +109,12 @@ class ApartmentController extends Controller
         $apartment->update();
 
         $apartment->utilities()->sync($data['utilities'] ?? []);
+        $apartment->sponsors()->sync($data['sponsors'] ?? []);
 
         return redirect()->route('admin.apartments.show', ['apartment' => $apartment]);
     }
 
-    
+
     public function destroy($slug)
     {
         $apartment = Apartment::where('slug', $slug)->firstOrFail();
@@ -111,7 +130,7 @@ class ApartmentController extends Controller
         Apartment::withTrashed()->where('slug', $slug)->restore();
         $apartment = Apartment::where('slug', $slug)->firstOrFail();
 
-        
+
 
         return to_route('admin.apartments.trashed')->with('restore_success', $apartment);
     }
@@ -122,7 +141,7 @@ class ApartmentController extends Controller
         Apartment::withTrashed()->where('slug', $slug)->restore();
         $apartment = Apartment::where('slug', $slug)->firstOrFail();
 
-        
+
 
         return to_route('admin.apartments.index')->with('cancel_success', $apartment);
     }
@@ -137,13 +156,14 @@ class ApartmentController extends Controller
     public function harddelete($slug)
     {
         $apartment = Apartment::withTrashed()->where('slug', $slug)->first();
-        
+
         if ($apartment->file) {
             Storage::delete($apartment->file);
         }
         // se ho il trashed lo inserisco nel harddelete
-        
+
         $apartment->utilities()->detach();
+        $apartment->sponsors()->detach();
         $apartment->forceDelete();
         return to_route('admin.apartments.trashed')->with('delete_success', $apartment);
     }
