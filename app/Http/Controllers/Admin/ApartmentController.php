@@ -42,7 +42,10 @@ class ApartmentController extends Controller
         $newApartment = new apartment();
         $newApartment->title         = $data['title'];
         $newApartment->slug          = apartment::slugger($data['title']);
-        $newApartment->image_id      = $data['image_id'];
+        if ($request->has('image_id')) {
+            $imagePath = Storage::put('uploads', $data['image_id']);
+            $newApartment->image_id          = $imagePath;
+        }
         $newApartment->address_id      = $data['address_id'];
         $newApartment->view_id      = $data['view_id'];
         $newApartment->rooms     = $data['rooms'];
@@ -89,14 +92,13 @@ class ApartmentController extends Controller
         // $request->validate($this->validations, $this->validations_messages);
         $data = $request->all();
 
-        // if ($request->has('img')) {
-        //     $imagePath = Storage::disk('public')->put('uploads', $data['img']);
-        //     if ($apartment->img) {
-        //         Storage::delete($apartment->img);
-        //     }
-        //     $apartment->img = $imagePath;
-        // }
-        $apartment->image_id      = $data['image_id'];
+        if ($request->has('image_id')) {
+            $imagePath = Storage::disk('public')->put('uploads', $data['image_id']);
+            if ($project->image_id) {
+                Storage::delete($apartment->image_id);
+            }
+            $apartment->image_id = $imagePath;
+        }
         $apartment->address_id      = $data['address_id'];
         $apartment->view_id      = $data['view_id'];
         $apartment->title          = $data['title'];

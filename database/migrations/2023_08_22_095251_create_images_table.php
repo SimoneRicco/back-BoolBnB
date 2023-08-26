@@ -14,7 +14,8 @@ return new class extends Migration
             $table->boolean('cover_image');
             $table->string('name', 100);
             $table->string('url', 200);
-
+            $table->unsignedBigInteger('apartment_id');
+            $table->foreign('apartment_id')->references('id')->on('apartments');
             $table->timestamps();
         });
     }

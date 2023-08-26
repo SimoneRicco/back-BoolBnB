@@ -49,7 +49,7 @@ class Apartment extends Model
 
     public function image()
     {
-        return $this->belongsTo(Image::class);  /*has many */
+        return $this->hasMany(Image::class);  
     }
    
     public function utilities() {
