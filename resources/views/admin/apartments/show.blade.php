@@ -3,7 +3,7 @@
 
     <h1 class=" text-5xl text-center py-2"> {{ $apartment->title }}</h1>
     <p class="text-center py-2"> Dettagli: </p>
-    <img src="{{ asset('storage/uploads/' . $apartment->image->url) }}" alt="{{ $apartment->title }}">
+    <img src="{{ asset('storage/uploads/' . $apartment->image) }}" alt="{{ $apartment->title }}">
     
     {{-- <div class="flex justify-center flex-wrap">
         <img src="{{ asset('storage/uploads' . $project->image1) }}" alt="{{ $project->title }}">
