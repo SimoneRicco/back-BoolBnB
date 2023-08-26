@@ -14,6 +14,6 @@ class Image extends Model
 
     public function apartments()
     {
-        return $this->hasMany(Apartment::class);
+        return $this->hasMany(Apartment::class);  /* belongsTo */
     }
 }
