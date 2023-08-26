@@ -14,6 +14,27 @@ use Illuminate\Support\Facades\Storage;
 
 class ApartmentController extends Controller
 {
+    private $validations = [
+        'title'              => 'required|string|max:50',
+        'address_id'         => 'integer|exists:address,id',
+        'user_id'            => 'required|integer|exists:users,id',
+        'rooms'              => 'required|integer',
+        'beds'               => 'required|integer',
+        'bathrooms'          => 'required|integer',
+        'square_meters'      => 'required|string|in:20,30,40,50,60,70,80,90,100,110,120,130,140,150,160,170,180',
+        'available'          => 'required|boolean',
+        'utilities'          => 'nullable|array',
+        'utilities. *'       => 'integer|exists:utilities,id',
+        'sponsors'           => 'nullable',
+        'sponsors. *'        => 'integer|exists:sponsors,id',
+
+    ];
+
+    private $validations_messages = [
+        'required'      => 'il campo :attribute è obbligatorio',
+        'max'           => 'il campo :attribute deve avere almeno :max caratteri',
+        'exists'        => 'Valore non valido',
+    ];
 
     public function index()
     {
@@ -35,29 +56,24 @@ class ApartmentController extends Controller
 
     public function store(Request $request)
     {
-        // $request->validate($this->validations, $this->validations_messages);
+        $request->validate($this->validations, $this->validations_messages);
         $data = $request->all();
 
         // Salvare i dati nel database
         $newApartment = new apartment();
-        $newApartment->title         = $data['title'];
-        $newApartment->slug          = apartment::slugger($data['title']);
-        if ($request->has('image_id')) {
-            $imagePath = Storage::put('uploads', $data['image_id']);
-            $newApartment->image_id          = $imagePath;
-        }
-        $newApartment->address_id      = $data['address_id'];
-        $newApartment->view_id      = $data['view_id'];
-        $newApartment->rooms     = $data['rooms'];
-        // if ($request->has('img')) {
-        //     $imagePath = Storage::put('uploads', $data['img']);
-        //     $newApartment->img          = $imagePath;
+        $newApartment->title            = $data['title'];
+        $newApartment->slug             = apartment::slugger($data['title']);
+        // if ($request->has('image_id')) {
+        //     $imagePath = Storage::put('uploads', $data['image_id']);
+        //     $newApartment->image_id          = $imagePath;
         // }
-        $newApartment->beds    = $data['beds'];
-        $newApartment->bathrooms   = $data['bathrooms'];
-        $newApartment->square_meters   = $data['square_meters'];
-        $newApartment->address        = $data['address'];
-        $newApartment->visible      = $data['visible'];
+        $newApartment->address_id       = $data['address_id'];
+        $newApartment->user_id          = $data['user_id'];
+        $newApartment->rooms            = $data['rooms'];
+        $newApartment->beds             = $data['beds'];
+        $newApartment->bathrooms        = $data['bathrooms'];
+        $newApartment->square_meters    = $data['square_meters'];
+        $newApartment->available        = $data['available'];
         $newApartment->save();
 
         $newApartment->utilities()->sync($data['utilities'] ?? []);
@@ -89,25 +105,25 @@ class ApartmentController extends Controller
     public function update(Request $request, $slug)
     {
         $apartment = Apartment::where('slug', $slug)->firstOrFail();
-        // $request->validate($this->validations, $this->validations_messages);
+        $request->validate($this->validations, $this->validations_messages);
         $data = $request->all();
 
-        if ($request->has('image_id')) {
-            $imagePath = Storage::disk('public')->put('uploads', $data['image_id']);
-            if ($project->image_id) {
-                Storage::delete($apartment->image_id);
-            }
-            $apartment->image_id = $imagePath;
-        }
-        $apartment->address_id      = $data['address_id'];
-        $apartment->view_id      = $data['view_id'];
-        $apartment->title          = $data['title'];
-        $apartment->rooms     = $data['rooms'];
-        $apartment->beds    = $data['beds'];
-        $apartment->bathrooms   = $data['bathrooms'];
-        $apartment->square_meters   = $data['square_meters'];
-        $apartment->address        = $data['address'];
-        $apartment->visible      = $data['visible'];
+        // if ($request->has('image_id')) {
+        //     $imagePath = Storage::disk('public')->put('uploads', $data['image_id']);
+        //     if ($apartment->image_id) {
+        //         Storage::delete($apartment->image_id);
+        //     }
+        //     $apartment->image_id = $imagePath;
+        // }
+        
+        $apartment->title            = $data['title'];
+        $apartment->address_id       = $data['address_id'];
+        $apartment->user_id          = $data['user_id'];
+        $apartment->rooms            = $data['rooms'];
+        $apartment->beds             = $data['beds'];
+        $apartment->bathrooms        = $data['bathrooms'];
+        $apartment->square_meters    = $data['square_meters'];
+        $apartment->available        = $data['available'];
         $apartment->update();
 
         $apartment->utilities()->sync($data['utilities'] ?? []);
@@ -150,9 +166,9 @@ class ApartmentController extends Controller
 
     public function trashed()
     {
-        $trashedApartment = Apartment::onlyTrashed()->paginate(3);
+        $trashedApartments = Apartment::onlyTrashed()->paginate(5);
 
-        return view('admin.apartment.trashed', compact('trashedApartment'));
+        return view('admin.apartments.trashed', compact('trashedApartments'));
     }
 
     public function harddelete($slug)
