@@ -36,6 +36,7 @@
                         <th class="p-3 text-blue-600/100">Indirizzo</th>
                         <th class="p-3 text-blue-600/100">Utilities</th>
                         <th class="p-3 text-blue-600/100">Sponsors</th>
+                        <th class="p-3 text-center text-blue-600/100">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
