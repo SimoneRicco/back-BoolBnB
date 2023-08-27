@@ -14,6 +14,6 @@ class Address extends Model
 
     public function apartment()
     {
-        return $this->hasOne(Apartment::class);
+        return $this->belongsTo(Apartment::class);
     }
 }

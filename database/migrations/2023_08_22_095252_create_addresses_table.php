@@ -14,6 +14,8 @@ return new class extends Migration
             $table->string('address', 200);
             $table->string('latitude', 200);
             $table->string('longitude', 200);
+            $table->unsignedBigInteger('apartment_id');
+            $table->foreign('apartment_id')->references('id')->on('apartments');
 
             $table->timestamps();
         });

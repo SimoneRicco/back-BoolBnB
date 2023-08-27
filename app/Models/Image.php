@@ -12,7 +12,7 @@ class Image extends Model
 
     protected $table = 'images';
 
-    public function apartments()
+    public function apartment()
     {
         return $this->belongsTo(Apartment::class); 
     }

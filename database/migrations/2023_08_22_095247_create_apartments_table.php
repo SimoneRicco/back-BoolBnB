@@ -21,10 +21,8 @@ return new class extends Migration
             $table->boolean('available');
 
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('address_id');
             
             $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('address_id')->references('id')->on('addresses');
            
             $table->softDeletes();
         });
@@ -37,12 +35,10 @@ return new class extends Migration
             // elimino la chiave esterna
 
             $table->dropForeign('apartments_user_id_foreign');
-            $table->dropForeign('apartments_address_id_foreign');
         
             // elimino la colonna
 
             $table->dropColumn('user_id');
-            $table->dropColumn('address_id');
         });
 
     }

@@ -44,7 +44,7 @@ class Apartment extends Model
 
     public function address()
     {
-        return $this->belongsTo(Address::class);
+        return $this->hasOne(Address::class);
     }
 
     public function image()
@@ -59,5 +59,16 @@ class Apartment extends Model
     public function sponsors()
     {
         return $this->belongsToMany(Sponsor::class);
+    }
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($apartment) {
+            if (!$apartment->user_id) {
+                $apartment->user_id = auth()->user()->id;
+            }
+        });
     }
 }

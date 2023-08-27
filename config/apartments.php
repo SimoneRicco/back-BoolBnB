@@ -11,7 +11,6 @@ return
         'available'       => true,
         'utilities'       => [1],
         "user_id"         => "1",
-        "address_id"      => "1",
         "sponsors"        => [1],        
     ],
     [
@@ -23,7 +22,6 @@ return
         'available'       => true,
         'utilities'       => [1],
         "user_id"         => "1",
-        "address_id"      => "1",
         "sponsors"        => [1],        
     ],
     [
@@ -35,7 +33,6 @@ return
         'available'       => true,
         'utilities'       => [1],
         "user_id"         => "1",
-        "address_id"      => "1",
         "sponsors"        => [1],        
     ],
     [
@@ -47,7 +44,6 @@ return
         'available'       => true,
         'utilities'       => [1],
         "user_id"         => "1",
-        "address_id"      => "1",
         "sponsors"        => [1],        
     ],
     [
@@ -59,7 +55,6 @@ return
         'available'       => true,
         'utilities'       => [1],
         "user_id"         => "1",
-        "address_id"      => "1",
         "sponsors"        => [1],        
     ],
     [
@@ -71,7 +66,6 @@ return
         'available'       => true,
         'utilities'       => [1],
         "user_id"         => "1",
-        "address_id"      => "1",
         "sponsors"        => [1],        
     ],
     [
@@ -83,7 +77,6 @@ return
         'available'       => true,
         'utilities'       => [1],
         "user_id"         => "1",
-        "address_id"      => "1",
         "sponsors"        => [1],        
     ],
     [
@@ -95,7 +88,6 @@ return
         'available'       => true,
         'utilities'       => [1],
         "user_id"         => "1",
-        "address_id"      => "1",
         "sponsors"        => [1],        
     ],
     [
@@ -107,7 +99,6 @@ return
         'available'       => true,
         'utilities'       => [1],
         "user_id"         => "1",
-        "address_id"      => "1",
         "sponsors"        => [1],        
     ],
     [
@@ -119,7 +110,6 @@ return
         'available'       => true,
         'utilities'       => [1],
         "user_id"         => "1",
-        "address_id"      => "1",
         "sponsors"        => [1],        
     ],
     [
@@ -131,7 +121,6 @@ return
         'available'       => true,
         'utilities'       => [1],
         "user_id"         => "1",
-        "address_id"      => "1",
         "sponsors"        => [1],        
     ],
     [
@@ -143,7 +132,6 @@ return
         'available'       => true,
         'utilities'       => [1],
         "user_id"         => "1",
-        "address_id"      => "1",
         "sponsors"        => [1],        
     ],
 ];
