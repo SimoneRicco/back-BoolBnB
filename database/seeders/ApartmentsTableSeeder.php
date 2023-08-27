@@ -20,8 +20,7 @@ class ApartmentsTableSeeder extends Seeder
 
             $apartment = Apartment::create([
                 'user_id'           => $objApartment['user_id'],
-                // 'address_id'           => $objApartment['address_id'],
-                // 'image_id'           => $objApartment['image_id'],
+                'sponsor_id'           => $objApartment['sponsor_id'],
                 'title'          => $objApartment['title'],
                 'slug'              => $slug,
                 'rooms'     => $objApartment['rooms'],
@@ -32,7 +31,6 @@ class ApartmentsTableSeeder extends Seeder
             ]);
 
             $apartment->utilities()->sync($objApartment['utilities']);
-            $apartment->sponsors()->sync($objApartment['sponsors']);
         }
     }
 }

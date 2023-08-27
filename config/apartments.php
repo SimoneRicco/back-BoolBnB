@@ -11,7 +11,7 @@ return
         'available'       => true,
         'utilities'       => [1],
         "user_id"         => "1",
-        "sponsors"        => [1],        
+        "sponsor_id"         => "1",        
     ],
     [
         'title'           => 'loft nel centro città',
@@ -22,7 +22,7 @@ return
         'available'       => true,
         'utilities'       => [1],
         "user_id"         => "1",
-        "sponsors"        => [1],        
+        "sponsor_id"         => "1",        
     ],
     [
         'title'           => 'monolocale',
@@ -33,7 +33,7 @@ return
         'available'       => true,
         'utilities'       => [1],
         "user_id"         => "1",
-        "sponsors"        => [1],        
+        "sponsor_id"         => "1",        
     ],
     [
         'title'           => 'trilocale in periferia',
@@ -44,7 +44,7 @@ return
         'available'       => true,
         'utilities'       => [1],
         "user_id"         => "1",
-        "sponsors"        => [1],        
+        "sponsor_id"         => "1",        
     ],
     [
         'title'           => 'appartamento a due passi dall\'arno',
@@ -55,7 +55,7 @@ return
         'available'       => true,
         'utilities'       => [1],
         "user_id"         => "1",
-        "sponsors"        => [1],        
+        "sponsor_id"         => "1",        
     ],
     [
         'title'           => 'bilocale luminoso',
@@ -66,7 +66,7 @@ return
         'available'       => true,
         'utilities'       => [1],
         "user_id"         => "1",
-        "sponsors"        => [1],        
+        "sponsor_id"         => "1",        
     ],
     [
         'title'           => 'monolocale per studenti',
@@ -77,7 +77,7 @@ return
         'available'       => true,
         'utilities'       => [1],
         "user_id"         => "1",
-        "sponsors"        => [1],        
+        "sponsor_id"         => "1",        
     ],
     [
         'title'           => 'Baita sul Fiume',
@@ -88,7 +88,7 @@ return
         'available'       => true,
         'utilities'       => [1],
         "user_id"         => "1",
-        "sponsors"        => [1],        
+        "sponsor_id"         => "1",        
     ],
     [
         'title'           => 'Cottage sul lago',
@@ -99,7 +99,7 @@ return
         'available'       => true,
         'utilities'       => [1],
         "user_id"         => "1",
-        "sponsors"        => [1],        
+        "sponsor_id"         => "1",        
     ],
     [
         'title'           => 'Loft Bella Vita',
@@ -110,7 +110,7 @@ return
         'available'       => true,
         'utilities'       => [1],
         "user_id"         => "1",
-        "sponsors"        => [1],        
+        "sponsor_id"         => "1",        
     ],
     [
         'title'           => 'Casa in montagna',
@@ -121,7 +121,7 @@ return
         'available'       => true,
         'utilities'       => [1],
         "user_id"         => "1",
-        "sponsors"        => [1],        
+        "sponsor_id"         => "1",        
     ],
     [
         'title'           => 'Casa in campagna',
@@ -132,6 +132,6 @@ return
         'available'       => true,
         'utilities'       => [1],
         "user_id"         => "1",
-        "sponsors"        => [1],        
+        "sponsor_id"         => "1",        
     ],
 ];

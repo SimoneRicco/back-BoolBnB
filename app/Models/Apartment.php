@@ -56,9 +56,9 @@ class Apartment extends Model
         return $this->belongsToMany(Utility::class);
     }
 
-    public function sponsors()
+    public function sponsor()
     {
-        return $this->belongsToMany(Sponsor::class);
+        return $this->belongsTo(Sponsor::class,);
     }
 
     protected static function boot()

@@ -27,8 +27,7 @@ class ApartmentController extends Controller
     //     'bathrooms'             => 'required|integer',
     //     'square_meters'         => 'required|in:20,30,40,50,60,70,80,90,100,110,120,130,140,150,160,170,180',
     //     'available'             => 'required|boolean',
-    //     'sponsors'           => 'nullable|array',
-    //     'sponsors.*'         => 'integer|exists:sponsors,id',
+    //     'sponsor'               => 'required|string',
     //     'utilities'             => 'nullable|array',
     //     'utilities.*'           => 'integer|exists:utilities,id',
 
@@ -68,6 +67,7 @@ class ApartmentController extends Controller
         $newApartment = new apartment();
         $newApartment->title            = $data['title'];
         $newApartment->user_id          = auth()->user()->id;
+        $newApartment->sponsor_id       = $data['sponsor_id'];
         $newApartment->slug             = apartment::slugger($data['title']);
         $newApartment->rooms            = $data['rooms'];
         $newApartment->beds             = $data['beds'];
@@ -77,7 +77,6 @@ class ApartmentController extends Controller
         $newApartment->save();
 
         $newApartment->utilities()->sync($data['utilities'] ?? []);
-        $newApartment->sponsors()->sync($data['sponsors'] ?? []);
 
         // istanza per gli address
 
@@ -88,6 +87,17 @@ class ApartmentController extends Controller
 
         $newAddress->apartment()->associate($newApartment);
         $newAddress->save();
+
+        // istanza per lo sponsor
+
+        // $newSponsor = new Sponsor();
+        // $newSponsor->type                 = $data['type'];
+        // $newSponsor->price                = $data['price'];
+        // $newSponsor->subscription_date    = $data['subscription_date'];
+        // $newSponsor->duration             = $data['duration'];
+
+        // $newSponsor->apartment()->associate($newApartment);
+        // $newSponsor->save();
 
         // istanza per le image
 

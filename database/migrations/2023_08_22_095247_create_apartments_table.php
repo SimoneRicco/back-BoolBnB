@@ -21,9 +21,12 @@ return new class extends Migration
             $table->boolean('available');
 
             $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('sponsor_id');
+            
             
             $table->foreign('user_id')->references('id')->on('users');
-           
+            $table->foreign('sponsor_id')->references('id')->on('sponsors');
+
             $table->softDeletes();
         });
     }
@@ -35,10 +38,12 @@ return new class extends Migration
             // elimino la chiave esterna
 
             $table->dropForeign('apartments_user_id_foreign');
+            $table->dropForeign('apartments_sponsor_id_foreign');
         
             // elimino la colonna
 
             $table->dropColumn('user_id');
+            $table->dropColumn('sponsor_id');
         });
 
     }
