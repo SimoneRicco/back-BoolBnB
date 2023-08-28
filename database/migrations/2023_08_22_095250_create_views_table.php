@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    
+
     public function up()
     {
         Schema::create('views', function (Blueprint $table) {
@@ -15,15 +15,21 @@ return new class extends Migration
             $table->string('ip_address', 100);
             $table->date('view_date');
             $table->unsignedBigInteger('apartment_id');
-            $table->foreign('apartment_id')->references('id')->on('apartments');
+            $table->foreign('apartment_id')->references('id')->on('apartments')->onDelete('cascade');
 
             $table->timestamps();
         });
     }
 
-    
+
     public function down()
     {
-        Schema::dropIfExists('views');
+        Schema::table('views', function (Blueprint $table) {
+            // elimino la chiave esterna
+            $table->dropForeign('views_apartment_id_foreign');
+
+            // elimino la colonna
+            $table->dropColumn('apartment_id');
+        });
     }
 };

@@ -93,22 +93,22 @@ class ApartmentController extends Controller
         foreach ($request->file('images') as $index => $imageFile) {
             $newImage = new Image();
             $newImage->name = $imageFile->getClientOriginalName();
-        
+
             // Imposta il valore di 'cover_image' in base all'indice selezionato
             $newImage->cover_image = $index === (int)$coverImageIndex;
-        
+
             // Esegui la logica per salvare l'immagine e associarla all'appartamento
             $newImage->apartment()->associate($newApartment);
-        
+
             // Salva fisicamente l'immagine nel percorso desiderato
             $imagePath = $newImage->id . '_' . $imageFile->getClientOriginalName();
             $imageFile->storeAs('uploads', $imagePath); // Rimuovi 'uploads/' dal percorso
-        
+
             // Assegna l'URL dell'immagine (senza il percorso completo)
             $newImage->url = $imagePath;
-        
+
             $newImage->save();
-        
+
             // Se questa immagine è selezionata come immagine di copertina, aggiorna tutte le altre immagini
             if ($newImage->cover_image) {
                 Image::where('apartment_id', $newApartment->id)
@@ -116,8 +116,8 @@ class ApartmentController extends Controller
                     ->update(['cover_image' => false]);
             }
         }
-        
-        
+
+
 
         return redirect()->route('admin.apartments.show', ['apartment' => $newApartment]);
     }
@@ -155,7 +155,7 @@ class ApartmentController extends Controller
         //     }
         //     $apartment->image_id = $imagePath;
         // }
-        
+
         $apartment->title            = $data['title'];
         $apartment->address_id       = $data['address_id'];
         $apartment->user_id          = $data['user_id'];
@@ -221,7 +221,6 @@ class ApartmentController extends Controller
         // se ho il trashed lo inserisco nel harddelete
 
         $apartment->utilities()->detach();
-        $apartment->sponsors()->detach();
         $apartment->forceDelete();
         return to_route('admin.apartments.trashed')->with('delete_success', $apartment);
     }

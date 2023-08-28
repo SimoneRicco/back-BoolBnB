@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    
+
     public function up()
     {
         Schema::create('messages', function (Blueprint $table) {
@@ -15,15 +15,21 @@ return new class extends Migration
             $table->text('message');
             $table->string('email');
             $table->unsignedBigInteger('apartment_id');
-            $table->foreign('apartment_id')->references('id')->on('apartments');
+            $table->foreign('apartment_id')->references('id')->on('apartments')->onDelete('cascade');
 
             $table->timestamps();
         });
     }
 
-    
+
     public function down()
     {
-        Schema::dropIfExists('messages');
+        Schema::table('messages', function (Blueprint $table) {
+            // elimino la chiave esterna
+            $table->dropForeign('messages_apartment_id_foreign');
+
+            // elimino la colonna
+            $table->dropColumn('apartment_id');
+        });
     }
 };

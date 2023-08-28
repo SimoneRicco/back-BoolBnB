@@ -15,15 +15,21 @@ return new class extends Migration
             $table->string('latitude', 200);
             $table->string('longitude', 200);
             $table->unsignedBigInteger('apartment_id');
-            $table->foreign('apartment_id')->references('id')->on('apartments');
+            $table->foreign('apartment_id')->references('id')->on('apartments')->onDelete('cascade');
 
             $table->timestamps();
         });
     }
 
-    
+
     public function down()
     {
-        Schema::dropIfExists('addresses');
+        Schema::table('addresses', function (Blueprint $table) {
+            // elimino la chiave esterna
+            $table->dropForeign('addresses_apartment_id_foreign');
+
+            // elimino la colonna
+            $table->dropColumn('apartment_id');
+        });
     }
 };
