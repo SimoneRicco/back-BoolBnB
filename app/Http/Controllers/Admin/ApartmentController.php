@@ -20,7 +20,7 @@ class ApartmentController extends Controller
         'address'           => 'required|string',
         'latitude'          => 'required|numeric',
         'longitude'         => 'required|numeric',
-        'images.*'          => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+        'images.*'          => 'required|image|mimes:jpeg,png,jpg,gif|max:10240',
         'cover_image_index' => 'required|integer',
         'rooms'             => 'required|integer',
         'beds'              => 'required|integer',
