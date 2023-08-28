@@ -136,12 +136,6 @@
                     @enderror
                 </div>
                   
-                  
-                  
-    
-                
-                
-    
                 <div class="mb-4">
                     <h6 class="text-lg font-medium text-white">Sponsors</h6>
                     
@@ -161,8 +155,6 @@
                     @enderror
                 </div>
                 
-                
-    
                 <div class="mb-4">
                     <h6 class="text-lg font-medium text-white">Utilities</h6>
                     @foreach ($utilities as $utility)

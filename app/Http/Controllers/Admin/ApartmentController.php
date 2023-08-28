@@ -15,29 +15,28 @@ use Illuminate\Support\Facades\Storage;
 
 class ApartmentController extends Controller
 {
-    // private $validations = [
-    //     'title'                 => 'required|string|max:50',
-    //     'address'               => 'required|string',
-    //     'latitude'              => 'required|numeric',
-    //     'longitude'             => 'required|numeric',
-    //     'images.*'              => 'image|mimes:jpeg,png,jpg,gif|max:2048',
-    //     'cover_image_index'     => 'required|integer',
-    //     'rooms'                 => 'required|integer',
-    //     'beds'                  => 'required|integer',
-    //     'bathrooms'             => 'required|integer',
-    //     'square_meters'         => 'required|in:20,30,40,50,60,70,80,90,100,110,120,130,140,150,160,170,180',
-    //     'available'             => 'required|boolean',
-    //     'sponsor'               => 'required|string',
-    //     'utilities'             => 'nullable|array',
-    //     'utilities.*'           => 'integer|exists:utilities,id',
+    private $validations = [
+        'title'             => 'required|string|max:50',
+        'address'           => 'required|string',
+        'latitude'          => 'required|numeric',
+        'longitude'         => 'required|numeric',
+        'images.*'          => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+        'cover_image_index' => 'required|integer',
+        'rooms'             => 'required|integer',
+        'beds'              => 'required|integer',
+        'bathrooms'         => 'required|integer',
+        'square_meters'     => 'required|in:20,30,40,50,60,70,80,90,100,110,120,130,140,150,160,170,180',
+        'available'         => 'required|boolean',
+        'sponsor_id'        => 'required|integer|exists:sponsors,id',
+        'utilities'         => 'nullable|array',
+        'utilities.*'       => 'integer|exists:utilities,id',
+    ];
 
-    // ];
-
-    // private $validations_messages = [
-    //     'required'                      => 'Il campo :attribute è obbligatorio.',
-    //     'max'                           => 'Il campo :attribute deve avere al massimo :max caratteri.',
-    //     'exists'                        => 'Valore non valido.',
-    // ];
+    private $validations_messages = [
+        'required'                      => 'Il campo :attribute è obbligatorio.',
+        'max'                           => 'Il campo :attribute deve avere al massimo :max caratteri.',
+        'exists'                        => 'Valore non valido.',
+    ];
 
     public function index()
     {
@@ -59,7 +58,7 @@ class ApartmentController extends Controller
 
     public function store(Request $request)
     {
-        // $request->validate($this->validations, $this->validations_messages);
+        $request->validate($this->validations, $this->validations_messages);
         $data = $request->all();
         $coverImageIndex = $request->input('cover_image_index', -1);
 
@@ -145,7 +144,7 @@ class ApartmentController extends Controller
     public function update(Request $request, $slug)
     {
         $apartment = Apartment::where('slug', $slug)->firstOrFail();
-        // $request->validate($this->validations, $this->validations_messages);
+        $request->validate($this->validations, $this->validations_messages);
         $data = $request->all();
 
         // if ($request->has('image_id')) {
