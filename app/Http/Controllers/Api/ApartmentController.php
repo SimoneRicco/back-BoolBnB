@@ -13,10 +13,10 @@ class ApartmentController extends Controller
         $apartments = Apartment::paginate(5);
         return response()->json($apartments);
     }
-    
+
     public function show($slug)
     {
-        $apartment = Apartment::where('slug', $slug)->firstOrFail();
+        $apartment = Apartment::with('image', 'address', 'sponsor', 'utilities')->where('slug', $slug)->firstOrFail();
         return response()->json([
             'results'   => $apartment,
         ]);
