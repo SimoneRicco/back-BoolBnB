@@ -13,7 +13,7 @@
                 @enderror
             </div>
 
-            <div class="mb-3">
+            <div class="mb-5">
                 <label for="address" class="block text-sm font-medium text-white">Address</label>
                 <input type="text" class="form-input mt-1 block w-full py-2 px-3 border bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm @error('address_id') border-red-500 @enderror" id="address" name="address" value="{{ old('address') }}" placeholder="Enter address">
                 @error('address')
@@ -22,6 +22,34 @@
                 </div>
                 @enderror
             </div>
+
+            {{-- searchbar start --}}
+            <div id="mySearchBox"></div>
+            <script>
+                var options = {
+                  searchOptions: {
+                    key: "ndHFeyzbDlb3RqfpAT5GGO7XqIcEf1DC",
+                    language: "it-IT",
+                    limit: 5,
+                  },
+                  autocompleteOptions: {
+                    key: "ndHFeyzbDlb3RqfpAT5GGO7XqIcEf1DC",
+                    language: "it-IT",
+                  },
+                  labels: {
+                    noResultsMessage: 'Nessun risultato trovato.'
+                  },
+                };
+                var ttSearchBox = new tt.plugins.SearchBox(tt.services, options);
+                var searchBoxHTML = ttSearchBox.getSearchBoxHTML();
+                // document.body.append(searchBoxHTML);
+                document.querySelector("#mySearchBox").append(searchBoxHTML);
+
+                const inputBox = searchBoxHTML.firstChild.children[2]
+                inputBox.setAttribute('class', "form-input mt-1 block w-full py-2 px-3 border bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm")
+                inputBox.setAttribute('id', "apartment-address")
+            </script>
+            {{-- searchbar end --}}
 
             <div class="mb-3">
                 <label for="latitude" class="block text-sm font-medium text-white">Latitude</label>
@@ -181,8 +209,31 @@
             
 
             <div class="mb-4">
-                <button type="submit" class="px-4 py-2 text-white bg-green-700 rounded">Invia</button>
+                <button type="button" class="px-4 py-2 text-white bg-green-700 rounded" id="create-new-apartment">Invia</button>
             </div>
+            <script>
+                async function apiCall(addr) {
+                    if(addr != ""){
+                    const call = await fetch("https://api.tomtom.com/search/2/search/"+addr+".json?key=ndHFeyzbDlb3RqfpAT5GGO7XqIcEf1DC");
+                    const response = await call.json();
+                    // console.log(response);
+                    if (response.results == 0) {
+                        alert('Indirizzo non valido')
+                    }else{//tutto ha funzionato correttamente
+                        const {lat, lon} = response.results[0].position;
+                        document.querySelector("#latitude").value = lat;
+                        document.querySelector("#longitude").value = lon;
+                        // console.log(response.results)
+                    }
+                    }else{
+                        alert("Campo indirizzo vuoto")
+                    }
+                    }
+                const submitBtn = document.querySelector("#create-new-apartment");
+                // const address = document.querySelector("#apartment-address").value;
+                submitBtn.addEventListener('click', () =>{
+                    apiCall(document.querySelector("#apartment-address").value)});
+            </script>
         </form>
     </div>
 </x-app-layout>
