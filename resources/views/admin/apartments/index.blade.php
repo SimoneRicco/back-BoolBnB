@@ -40,7 +40,8 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($apartments as $apartment)
+                    @foreach ($apartments->sortByDesc('created_at') as $apartment)
+                      @if ($apartment->user_id === auth()->id())
                         <tr class="border-b border-opacity-20 dark:border-gray-700 dark:bg-gray-900">
                         <td class="p-3">
                             <p>{{ $apartment->title }}</p>
@@ -80,6 +81,7 @@
                             </div>
                         </td>
                     </tr>
+                    @endif
                     @endforeach
                     
                     

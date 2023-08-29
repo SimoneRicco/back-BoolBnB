@@ -39,10 +39,13 @@ class ApartmentController extends Controller
     ];
 
     public function index()
-    {
-        $apartments = Apartment::paginate(5);
-        return view('admin.apartments.index', compact('apartments'));
-    }
+{
+    $apartments = Apartment::where('user_id', auth()->id())
+        ->orderByDesc('created_at')
+        ->paginate(5);
+
+    return view('admin.apartments.index', compact('apartments'));
+}
 
 
     public function create()
@@ -79,13 +82,13 @@ class ApartmentController extends Controller
 
         // istanza per gli address
 
-        $newAddress = new Address();
-        $newAddress->address            = $data['address'];
-        $newAddress->latitude           = $data['latitude'];
-        $newAddress->longitude          = $data['longitude'];
+        $address = new Address();
+        $address->address            = $data['address'];
+        $address->latitude           = $data['latitude'];
+        $address->longitude          = $data['longitude'];
 
-        $newAddress->apartment()->associate($newApartment);
-        $newAddress->save();
+        $address->apartment()->associate($newApartment);
+        $address->save();
 
         // istanza per le image
 
@@ -131,7 +134,14 @@ class ApartmentController extends Controller
 
     public function edit($slug)
     {
-        $apartment = Apartment::where('slug', $slug)->firstOrFail();
+        $apartment = Apartment::where('slug', $slug)
+        ->where('user_id', auth()->id()) // Aggiungi questa condizione
+        ->first();
+
+        if (!$apartment) {
+            abort(403, 'Unauthorized'); // L'utente non ha il permesso di modificare questo appartamento
+        }
+        
         $utilities = Utility::all();
         $images = Image::all();
         $addresses = Address::all();
@@ -146,18 +156,11 @@ class ApartmentController extends Controller
         $apartment = Apartment::where('slug', $slug)->firstOrFail();
         $request->validate($this->validations, $this->validations_messages);
         $data = $request->all();
-
-        // if ($request->has('image_id')) {
-        //     $imagePath = Storage::disk('public')->put('uploads', $data['image_id']);
-        //     if ($apartment->image_id) {
-        //         Storage::delete($apartment->image_id);
-        //     }
-        //     $apartment->image_id = $imagePath;
-        // }
+        $coverImageIndex = $request->input('cover_image_index', -1);
 
         $apartment->title            = $data['title'];
-        $apartment->address_id       = $data['address_id'];
-        $apartment->user_id          = $data['user_id'];
+        $apartment->user_id          = auth()->user()->id;
+        $apartment->sponsor_id       = $data['sponsor_id'];
         $apartment->rooms            = $data['rooms'];
         $apartment->beds             = $data['beds'];
         $apartment->bathrooms        = $data['bathrooms'];
@@ -166,7 +169,41 @@ class ApartmentController extends Controller
         $apartment->update();
 
         $apartment->utilities()->sync($data['utilities'] ?? []);
-        $apartment->sponsors()->sync($data['sponsors'] ?? []);
+
+        $newAddress = new Address();
+        $newAddress->address            = $data['address'];
+        $newAddress->latitude           = $data['latitude'];
+        $newAddress->longitude          = $data['longitude'];
+
+        $newAddress->apartment()->associate($apartment);
+        $newAddress->save();
+
+        foreach ($request->file('images') as $index => $imageFile) {
+            $newImage = new Image();
+            $newImage->name = $imageFile->getClientOriginalName();
+        
+            // Imposta il valore di 'cover_image' in base all'indice selezionato
+            $newImage->cover_image = $index === (int)$coverImageIndex;
+        
+            // Esegui la logica per salvare l'immagine e associarla all'appartamento
+            $newImage->apartment()->associate($apartment); // Utilizza $apartment invece di $newApartment
+        
+            // Salva fisicamente l'immagine nel percorso desiderato
+            $imagePath = $newImage->id . '_' . $imageFile->getClientOriginalName();
+            $imageFile->storeAs('uploads', $imagePath); // Rimuovi 'uploads/' dal percorso
+        
+            // Assegna l'URL dell'immagine (senza il percorso completo)
+            $newImage->url = $imagePath;
+        
+            $newImage->save();
+        
+            // Se questa immagine è selezionata come immagine di copertina, aggiorna tutte le altre immagini
+            if ($newImage->cover_image) {
+                Image::where('apartment_id', $apartment->id) // Utilizza $apartment->id invece di $newApartment->id
+                    ->where('id', '!=', $newImage->id)
+                    ->update(['cover_image' => false]);
+            }
+        }
 
         return redirect()->route('admin.apartments.show', ['apartment' => $apartment]);
     }

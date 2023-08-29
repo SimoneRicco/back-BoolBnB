@@ -28,6 +28,7 @@ return new class extends Migration
             $table->foreign('sponsor_id')->references('id')->on('sponsors');
 
             $table->softDeletes();
+            $table->timestamps();
         });
     }
 
