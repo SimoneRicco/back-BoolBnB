@@ -39,10 +39,13 @@ class ApartmentController extends Controller
     ];
 
     public function index()
-    {
-        $apartments = Apartment::paginate(5);
-        return view('admin.apartments.index', compact('apartments'));
-    }
+{
+    $apartments = Apartment::where('user_id', auth()->id())
+        ->orderByDesc('created_at')
+        ->paginate(5);
+
+    return view('admin.apartments.index', compact('apartments'));
+}
 
 
     public function create()
@@ -131,7 +134,14 @@ class ApartmentController extends Controller
 
     public function edit($slug)
     {
-        $apartment = Apartment::where('slug', $slug)->firstOrFail();
+        $apartment = Apartment::where('slug', $slug)
+        ->where('user_id', auth()->id()) // Aggiungi questa condizione
+        ->first();
+
+        if (!$apartment) {
+            abort(403, 'Unauthorized'); // L'utente non ha il permesso di modificare questo appartamento
+        }
+        
         $utilities = Utility::all();
         $images = Image::all();
         $addresses = Address::all();
