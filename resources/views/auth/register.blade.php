@@ -9,11 +9,18 @@
             <x-input-error :messages="$errors->get('name')" class="mt-2" />
         </div>
 
-        <!-- lastname -->
+        <!-- Lastname -->
         <div>
             <x-input-label for="lastname" :value="__('Lastname')" />
             <x-text-input id="lastname" class="block mt-1 w-full" type="text" name="lastname" :value="old('lastname')" required autofocus autocomplete="lastname" />
             <x-input-error :messages="$errors->get('lastname')" class="mt-2" />
+        </div>
+
+        <!-- birth date -->
+        <div>
+            <x-input-label for="birth_date" :value="__('Birth Date')" />
+            <x-text-input id="birth_date" class="block mt-1 w-full" type="date" name="birth_date" :value="old('birth_date')" required autofocus autocomplete="birth_date" />
+            <x-input-error :messages="$errors->get('birth_date')" class="mt-2" />
         </div>
 
         <!-- Email Address -->

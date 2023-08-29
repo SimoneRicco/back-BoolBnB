@@ -18,6 +18,7 @@ class User extends Authenticatable
         'name',
         'lastname',
         'email',
+        'birth_date',
         'password',
     ];
 
@@ -35,5 +36,10 @@ class User extends Authenticatable
     public function apartments()
     {
         return $this->hasMany(Apartment::class);
+    }
+
+    public function getFormattedBirthDateAttribute()
+    {
+        return $this->birth_date->format('d/m/Y'); // Formato: giorno/mese/anno
     }
 }
