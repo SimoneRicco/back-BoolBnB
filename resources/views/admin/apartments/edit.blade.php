@@ -15,10 +15,48 @@
             <div class="mb-3">
                 <label for="address" class="block text-sm font-medium text-white">Address</label>
                 <input type="text" class="form-input mt-1 block w-full py-2 px-3 border bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm @error('address_id') border-red-500 @enderror" id="address" name="address" value="{{ old('address', $apartment->address->address) }}" placeholder="Enter address">
-                @error('address_id')
+                @error('address')
                 <div class="text-red-500 text-xs mt-1">
                     {{ $message }}
                 </div>
+                @enderror
+            </div>
+
+            <div class="mb-3">
+                <label for="latitude" class="block text-sm font-medium text-white">Latitude</label>
+                <input type="text" class="form-input mt-1 block w-full py-2 px-3 border bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm @error('latitude_id') border-red-500 @enderror" id="latitude" name="latitude" value="{{ old('latitude', $apartment->address->latitude) }}" placeholder="Enter latitude">
+                @error('latitude')
+                <div class="text-red-500 text-xs mt-1">
+                    {{ $message }}
+                </div>
+                @enderror
+            </div>
+
+            <div class="mb-3">
+                <label for="longitude" class="block text-sm font-medium text-white">Longitude</label>
+                <input type="text" class="form-input mt-1 block w-full py-2 px-3 border bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm @error('longitude_id') border-red-500 @enderror" id="longitude" name="longitude" value="{{ old('longitude', $apartment->address->longitude) }}" placeholder="Enter longitude">
+                @error('longitude')
+                <div class="text-red-500 text-xs mt-1">
+                    {{ $message }}
+                </div>
+                @enderror
+            </div>
+
+            <input type="file" name="images[]" multiple>
+            <div class="mb-3">
+                <label class="block font-semibold text-white">Cover Image</label>
+                <div class="space-y-2">
+                    <label class="flex items-center">
+                        <input type="radio" name="cover_image_index" value="-1" class="text-blue-600 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" checked>
+                        <span class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">No cover image</span>
+                    </label>
+                    <label class="flex items-center">
+                        <input type="radio" name="cover_image_index" value="0" class="text-blue-600 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                        <span class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Set as cover image</span>
+                    </label>
+                </div>
+                @error('cover_image_index')
+                    <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
                 @enderror
             </div>
 
@@ -97,23 +135,21 @@
                 
                 <div class="mb-4">
                     <h6 class="text-lg font-medium text-white">Sponsors</h6>
-                    @foreach ($sponsors as $sponsor)
-                        <div class="flex items-center mb-2">
-                            <input 
-                                class="form-radio h-5 w-5 text-blue-600" 
-                                type="radio" 
-                                id="sponsor{{ $sponsor->id }}" 
-                                value="{{ $sponsor->id }}"
-                                name="sponsors"
-                                @if (in_array($sponsor->id, old('sponsors', $apartment->sponsors->pluck('id')->all()))) checked @endif  
-                            >
-                            <label class="ml-2 text-white" for="sponsor{{ $sponsor->id }}">
-                                {{ $sponsor->type }}
-                            </label>
-                        </div>
-                    @endforeach
-                    @error('sponsors')
-                    <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
+                    <div class="flex items-center mb-2">
+                        <select class="form-select mt-1 block w-full py-2 px-3 border bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm @error('sponsor_id') border-red-500 @enderror" id="sponsor" name="sponsor_id">
+                            <option selected>Change sponsor</option>
+                            @foreach ($sponsors as $sponsor)
+                                <option 
+                                    value="{{ $sponsor->id }}" 
+                                    @if (old('sponsor_id', $apartment->sponsor->id) == $sponsor->id) selected @endif
+                                >
+                                    {{ $sponsor->type }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+                    @error('sponsor_id')
+                        <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
                     @enderror
                 </div>
                 
