@@ -18,7 +18,6 @@
                 <h1 class="text-white">Address</h1>
             </div>
             <div class="mb-3">
-                {{-- <label for="address" class="block text-sm font-medium text-white">Address</label> --}}
                 <input type="hidden" class="form-input mt-1 block w-full py-2 px-3 border bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm @error('address') border-red-500 @enderror" id="address" name="address" value="{{ old('address') }}" placeholder="Enter address">
                 @error('address')
                 <div class="text-red-500 text-xs mt-1">
@@ -64,7 +63,6 @@
             {{-- searchbar end --}}
 
             <div class="mb-3">
-                {{-- <label for="latitude" class="block text-sm font-medium text-white">Latitude</label> --}}
                 <input type="hidden" class="form-input mt-1 block w-full py-2 px-3 border bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm @error('latitude_id') border-red-500 @enderror" id="latitude" name="latitude" value="{{ old('latitude') }}" placeholder="Enter latitude">
                 @error('latitude')
                 <div class="text-red-500 text-xs mt-1">
@@ -74,7 +72,6 @@
             </div>
 
             <div class="mb-3">
-                {{-- <label for="longitude" class="block text-sm font-medium text-white">Longitude</label> --}}
                 <input type="hidden" class="form-input mt-1 block w-full py-2 px-3 border bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm @error('longitude_id') border-red-500 @enderror" id="longitude" name="longitude" value="{{ old('longitude') }}" placeholder="Enter longitude">
                 @error('longitude')
                 <div class="text-red-500 text-xs mt-1">
@@ -83,23 +80,64 @@
                 @enderror
             </div>
             
-            <input type="file" name="images[]" multiple>
-            <div class="mb-3">
-                <label class="block font-semibold text-white">Cover Image</label>
-                <div class="space-y-2">
-                    <label class="flex items-center">
-                        <input type="radio" name="cover_image_index" value="-1" class="text-blue-600 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" checked>
-                        <span class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">No cover image</span>
-                    </label>
-                    <label class="flex items-center">
-                        <input type="radio" name="cover_image_index" value="0" class="text-blue-600 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
-                        <span class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Set as cover image</span>
-                    </label>
-                </div>
-                @error('cover_image_index')
-                    <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
-                @enderror
-            </div>
+            <input type="file" name="images[]" id="imageInput" multiple>
+            <div id="imagePreviews" class="mt-3 space-y-3 flex"></div>
+
+            <script>
+                const imageInput = document.getElementById('imageInput');
+                const imagePreviews = document.getElementById('imagePreviews');
+                const coverImageSelections = {};
+
+                imageInput.addEventListener('change', handleImageUpload);
+
+                function handleImageUpload(event) {
+                    imagePreviews.innerHTML = '';
+
+                    const files = event.target.files;
+                    for (let i = 0; i < files.length; i++) {
+                        const imgPreview = document.createElement('div');
+                        imgPreview.classList.add('flex', 'items-center', 'space-x-2', 'relative');
+
+                        const imgElement = document.createElement('img');
+                        imgElement.src = URL.createObjectURL(files[i]);
+                        imgElement.classList.add('max-w-xs', 'max-h-32', 'border', 'border-gray-300', 'rounded');
+
+                        const radioInput = document.createElement('input');
+                        radioInput.type = 'radio';
+                        radioInput.name = 'cover_image_index';
+                        radioInput.value = i;
+                        radioInput.classList.add('text-blue-600', 'border-gray-300', 'rounded', 'focus:ring-blue-500', 'dark:focus:ring-blue-600', 'dark:ring-offset-gray-700', 'dark:focus:ring-offset-gray-700', 'focus:ring-2', 'dark:bg-gray-600', 'dark:border-gray-500');
+                        radioInput.addEventListener('change', () => {
+                            if (radioInput.checked) {
+                                coverImageSelections[i] = true;
+                            } else {
+                                delete coverImageSelections[i];
+                            }
+                        });
+
+                        const deleteButton = document.createElement('button');
+                        deleteButton.type = 'button';
+                        deleteButton.textContent = 'x';
+                        deleteButton.classList.add('absolute', 'top-0', 'right-0', 'text-red-500', 'hover:text-red-700', 'focus:outline-none', 'text-lg', 'mt-1', 'mr-1');
+                        deleteButton.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+                        deleteButton.style.borderRadius = '50%';
+                        deleteButton.style.padding = '4px 8px';
+                        deleteButton.addEventListener('click', () => {
+                            imgPreview.remove();
+                            delete coverImageSelections[i];
+                        });
+
+                        imgPreview.appendChild(imgElement);
+                        imgPreview.appendChild(deleteButton);
+                        imgPreview.appendChild(radioInput);
+
+                        imagePreviews.appendChild(imgPreview);
+                    }
+                }
+            </script>
+
+   
+
             
             <div class="flex space-x-4 justify-center">
                 <div class="mb-4">
