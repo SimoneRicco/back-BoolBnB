@@ -170,13 +170,11 @@ class ApartmentController extends Controller
 
         $apartment->utilities()->sync($data['utilities'] ?? []);
 
-        $newAddress = new Address();
-        $newAddress->address            = $data['address'];
-        $newAddress->latitude           = $data['latitude'];
-        $newAddress->longitude          = $data['longitude'];
-
-        $newAddress->apartment()->associate($apartment);
-        $newAddress->save();
+        $address = $apartment->address; // Recupera l'indirizzo esistente
+        $address->address = $data['address'];
+        $address->latitude = $data['latitude'];
+        $address->longitude = $data['longitude'];
+        $address->save();
 
         foreach ($request->file('images') as $index => $imageFile) {
             $newImage = new Image();

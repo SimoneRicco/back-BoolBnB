@@ -14,10 +14,12 @@
             </div>
 
             {{-- searchbar start --}}
-            <div id="mySearchBox"></div>
+            <div id="mySearchBox">
+                <h1 class="text-white">Address</h1>
+            </div>
             <div class="mb-3">
-                <label for="address" class="block text-sm font-medium text-white">Address</label>
-                <input type="text" class="form-input mt-1 block w-full py-2 px-3 border bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm @error('address') border-red-500 @enderror" id="address" name="address" value="{{ old('address') }}" placeholder="Enter address">
+                {{-- <label for="address" class="block text-sm font-medium text-white">Address</label> --}}
+                <input type="hidden" class="form-input mt-1 block w-full py-2 px-3 border bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm @error('address') border-red-500 @enderror" id="address" name="address" value="{{ old('address') }}" placeholder="Enter address">
                 @error('address')
                 <div class="text-red-500 text-xs mt-1">
                     {{ $message }}
@@ -62,8 +64,8 @@
             {{-- searchbar end --}}
 
             <div class="mb-3">
-                <label for="latitude" class="block text-sm font-medium text-white">Latitude</label>
-                <input type="text" class="form-input mt-1 block w-full py-2 px-3 border bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm @error('latitude_id') border-red-500 @enderror" id="latitude" name="latitude" value="{{ old('latitude') }}" placeholder="Enter latitude">
+                {{-- <label for="latitude" class="block text-sm font-medium text-white">Latitude</label> --}}
+                <input type="hidden" class="form-input mt-1 block w-full py-2 px-3 border bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm @error('latitude_id') border-red-500 @enderror" id="latitude" name="latitude" value="{{ old('latitude') }}" placeholder="Enter latitude">
                 @error('latitude')
                 <div class="text-red-500 text-xs mt-1">
                     {{ $message }}
@@ -72,8 +74,8 @@
             </div>
 
             <div class="mb-3">
-                <label for="longitude" class="block text-sm font-medium text-white">Longitude</label>
-                <input type="text" class="form-input mt-1 block w-full py-2 px-3 border bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm @error('longitude_id') border-red-500 @enderror" id="longitude" name="longitude" value="{{ old('longitude') }}" placeholder="Enter longitude">
+                {{-- <label for="longitude" class="block text-sm font-medium text-white">Longitude</label> --}}
+                <input type="hidden" class="form-input mt-1 block w-full py-2 px-3 border bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm @error('longitude_id') border-red-500 @enderror" id="longitude" name="longitude" value="{{ old('longitude') }}" placeholder="Enter longitude">
                 @error('longitude')
                 <div class="text-red-500 text-xs mt-1">
                     {{ $message }}

@@ -11,10 +11,13 @@
                     <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
                 @enderror
             </div>
-
+            
+            <div id="mySearchBox">
+                <h1 class="text-white">Address</h1>
+            </div>
             <div class="mb-3">
-                <label for="address" class="block text-sm font-medium text-white">Address</label>
-                <input type="text" class="form-input mt-1 block w-full py-2 px-3 border bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm @error('address_id') border-red-500 @enderror" id="address" name="address" value="{{ old('address', $apartment->address->address) }}" placeholder="Enter address">
+                {{-- <label for="address" class="block text-sm font-medium text-white">Address</label> --}}
+                <input type="hidden" class="form-input mt-1 block w-full py-2 px-3 border bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm @error('address_id') border-red-500 @enderror" id="address" name="address" value="{{ old('address', $apartment->address->address) }}" placeholder="Enter address">
                 @error('address')
                 <div class="text-red-500 text-xs mt-1">
                     {{ $message }}
@@ -23,8 +26,8 @@
             </div>
 
             <div class="mb-3">
-                <label for="latitude" class="block text-sm font-medium text-white">Latitude</label>
-                <input type="text" class="form-input mt-1 block w-full py-2 px-3 border bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm @error('latitude_id') border-red-500 @enderror" id="latitude" name="latitude" value="{{ old('latitude', $apartment->address->latitude) }}" placeholder="Enter latitude">
+                {{-- <label for="latitude" class="block text-sm font-medium text-white">Latitude</label> --}}
+                <input type="hidden" class="form-input mt-1 block w-full py-2 px-3 border bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm @error('latitude_id') border-red-500 @enderror" id="latitude" name="latitude" value="{{ old('latitude', $apartment->address->latitude) }}" placeholder="Enter latitude">
                 @error('latitude')
                 <div class="text-red-500 text-xs mt-1">
                     {{ $message }}
@@ -33,8 +36,8 @@
             </div>
 
             <div class="mb-3">
-                <label for="longitude" class="block text-sm font-medium text-white">Longitude</label>
-                <input type="text" class="form-input mt-1 block w-full py-2 px-3 border bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm @error('longitude_id') border-red-500 @enderror" id="longitude" name="longitude" value="{{ old('longitude', $apartment->address->longitude) }}" placeholder="Enter longitude">
+                {{-- <label for="longitude" class="block text-sm font-medium text-white">Longitude</label> --}}
+                <input type="hidden" class="form-input mt-1 block w-full py-2 px-3 border bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm @error('longitude_id') border-red-500 @enderror" id="longitude" name="longitude" value="{{ old('longitude', $apartment->address->longitude) }}" placeholder="Enter longitude">
                 @error('longitude')
                 <div class="text-red-500 text-xs mt-1">
                     {{ $message }}
@@ -181,6 +184,66 @@
             <div class="mb-4">
                 <button type="submit" class="px-4 py-2 text-white bg-green-700 rounded">Invia</button>
             </div>
+            <script>
+                var options = {
+                    searchOptions: {
+                        key: "ndHFeyzbDlb3RqfpAT5GGO7XqIcEf1DC",
+                        language: "it-IT",
+                        limit: 5,
+                    },
+                    autocompleteOptions: {
+                        key: "ndHFeyzbDlb3RqfpAT5GGO7XqIcEf1DC",
+                        language: "it-IT",
+                    },
+                    labels: {
+                        noResultsMessage: 'Nessun risultato trovato.'
+                    },
+                };
+                var ttSearchBox = new tt.plugins.SearchBox(tt.services, options);
+                var searchBoxHTML = ttSearchBox.getSearchBoxHTML();
+                document.querySelector("#mySearchBox").append(searchBoxHTML);
+
+                const inputBox = searchBoxHTML.firstChild.children[2];
+                inputBox.setAttribute('class', "form-input mt-1 block w-full py-2 px-3 border bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm");
+                inputBox.setAttribute('id', "apartment-address");
+
+                // Aggiungi un gestore di eventi per gestire la selezione dell'indirizzo
+                ttSearchBox.on('tomtom.searchbox.resultselected', function(event) {
+                    const selectedAddress = event.data.result.address.freeformAddress;
+                    document.querySelector("#apartment-address").value = selectedAddress;
+                    // Assegna automaticamente il valore all'input dell'indirizzo
+                    document.querySelector("#address").value = selectedAddress;
+                    
+                    // Chiamata all'API per ottenere latitudine e longitudine
+                    apiCall(selectedAddress);
+                });
+            </script>
+            <script>
+                async function apiCall(addr) {
+                    try {
+                        const response = await fetch(`https://api.tomtom.com/search/2/search/${addr}.json?key=ndHFeyzbDlb3RqfpAT5GGO7XqIcEf1DC`);
+                        const data = await response.json();
+            
+                        if (data.results.length === 0) {
+                            alert('Indirizzo non valido');
+                        } else {
+                            const { lat, lon } = data.results[0].position;
+                            document.querySelector("#latitude").value = lat;
+                            document.querySelector("#longitude").value = lon;
+                        }
+                    } catch (error) {
+                        console.error("Errore durante la chiamata API:", error);
+                    }
+                }
+            
+                const inputAddress = document.querySelector("#apartment-address");
+                inputAddress.addEventListener('change', async () => {
+                    const address = inputAddress.value;
+                    if (address) {
+                        await apiCall(address);
+                    }
+                });
+            </script>
         </form>
     </div>
 </x-app-layout>
