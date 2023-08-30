@@ -43,7 +43,7 @@ return
         'square_meters'   => 120,
         'available'       => true,
         'utilities'       => [1],
-        "user_id"         => "1",
+        "user_id"         => "2",
         "sponsor_id"         => "1",        
     ],
     [
@@ -54,7 +54,7 @@ return
         'square_meters'   => 90,
         'available'       => true,
         'utilities'       => [1],
-        "user_id"         => "1",
+        "user_id"         => "2",
         "sponsor_id"         => "1",        
     ],
     [
@@ -65,7 +65,7 @@ return
         'square_meters'   => 60,
         'available'       => true,
         'utilities'       => [1],
-        "user_id"         => "1",
+        "user_id"         => "2",
         "sponsor_id"         => "1",        
     ],
     [
@@ -76,7 +76,7 @@ return
         'square_meters'   => 60,
         'available'       => true,
         'utilities'       => [1],
-        "user_id"         => "1",
+        "user_id"         => "3",
         "sponsor_id"         => "1",        
     ],
     [
@@ -87,7 +87,7 @@ return
         'square_meters'   => 60,
         'available'       => true,
         'utilities'       => [1],
-        "user_id"         => "1",
+        "user_id"         => "3",
         "sponsor_id"         => "1",        
     ],
     [
@@ -98,7 +98,7 @@ return
         'square_meters'   => 90,
         'available'       => true,
         'utilities'       => [1],
-        "user_id"         => "1",
+        "user_id"         => "4",
         "sponsor_id"         => "1",        
     ],
     [
@@ -109,7 +109,7 @@ return
         'square_meters'   => 120,
         'available'       => true,
         'utilities'       => [1],
-        "user_id"         => "1",
+        "user_id"         => "4",
         "sponsor_id"         => "1",        
     ],
     [
@@ -120,7 +120,7 @@ return
         'square_meters'   => 65,
         'available'       => true,
         'utilities'       => [1],
-        "user_id"         => "1",
+        "user_id"         => "5",
         "sponsor_id"         => "1",        
     ],
     [
@@ -131,7 +131,7 @@ return
         'square_meters'   => 65,
         'available'       => true,
         'utilities'       => [1],
-        "user_id"         => "1",
+        "user_id"         => "5",
         "sponsor_id"         => "1",        
     ],
 ];
