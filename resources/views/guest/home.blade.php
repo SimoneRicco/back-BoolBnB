@@ -31,7 +31,7 @@
             @if (Route::has('login'))
                 <div class="w-screen flex justify-center ">        
                 @auth
-                    <a href="{{ url('/dashboard') }}" class=" text-gray-700 dark:text-gray-500 underline">Dashboard</a>
+                    <a href="{{ url('/dashboard') }}" class=" text-lg text-gray-700 dark:text-gray-500">Dashboard</a>
             @else
                 <div>
                     <button
