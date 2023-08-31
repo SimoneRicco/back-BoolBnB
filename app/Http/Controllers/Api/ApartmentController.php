@@ -27,7 +27,7 @@ class ApartmentController extends Controller
 
         if ($searchStr) {
             $query = $query->whereHas('address', function ($query) use ($searchStr) {
-                $query->where('address_field_name', 'LIKE', "%{$searchStr}%");
+                $query->where('address', 'LIKE', "%{$searchStr}%");
             })->orWhereHas('user', function ($query) use ($searchStr) {
                 $query->where('lastname', 'LIKE', "%{$searchStr}%");
             });
