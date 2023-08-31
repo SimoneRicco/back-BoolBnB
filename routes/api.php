@@ -16,3 +16,4 @@ Route::get('users/', [UserController::class, 'index'])->name('api.users.index');
 Route::get('images', [ImageController::class, 'index'])->name('api.images.index');
 Route::get('addresses', [AddressController::class, 'index'])->name('api.addresses.index');
 Route::get('views', [ViewController::class, 'index'])->name('api.views.index');
+// Route::get('utilities', [UtilityController::class, 'index'])->name('api.utilities.index');

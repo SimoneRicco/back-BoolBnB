@@ -16,4 +16,12 @@ class AddressController extends Controller
             'results' => $addresses,
         ]);
     }
+
+    public function show(Address $address)
+    {
+        $address = Address::all();
+        return response()->json([
+            'results'   => $address,
+        ]);
+    }
 }
