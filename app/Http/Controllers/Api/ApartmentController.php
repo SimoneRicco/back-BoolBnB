@@ -43,7 +43,7 @@ class ApartmentController extends Controller
 
     public function show($slug)
     {
-        $apartment = Apartment::with('image', 'address', 'sponsor', 'utilities')->where('slug', $slug)->firstOrFail();
+        $apartment = Apartment::with('image', 'address', 'sponsor', 'utilities', 'views')->where('slug', $slug)->firstOrFail();
         return response()->json([
             'results'   => $apartment,
         ]);
