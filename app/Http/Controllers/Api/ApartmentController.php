@@ -13,6 +13,8 @@ class ApartmentController extends Controller
     {
         $user_id = $request->query('user_id');
         $address_id = $request->query('address_id');
+        $rooms = $request->query('rooms');
+        $beds = $request->query('beds');
         $searchStr = $request->query('q');
         $query = Apartment::with('address', 'user');
         
@@ -31,6 +33,14 @@ class ApartmentController extends Controller
             })->orWhereHas('user', function ($query) use ($searchStr) {
                 $query->where('lastname', 'LIKE', "%{$searchStr}%");
             });
+        }
+
+        if($rooms){
+            $query = $query->where('rooms', '>=', $rooms);
+        }
+
+        if($beds){
+            $query = $query->where('beds', '>=', $beds);
         }
 
         $apartment = $query->paginate(8);
