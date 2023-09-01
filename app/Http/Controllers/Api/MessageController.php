@@ -17,7 +17,7 @@ class MessageController extends Controller
         'last_name'        => 'required|string|max:50',
         'email'            => 'required|email|max:250',
         'message'          => 'required|string',
-        'apartment_id'     => 'required|integer|exists:apartments,id',
+        // 'apartment_id'     => 'required|integer|exists:apartments,id',
     ];
     
     public function store(Request $request)
@@ -44,18 +44,34 @@ class MessageController extends Controller
         $newMessage->save();
 
         // Ottieni la lista degli appartamenti
-        $apartments = Apartment::all();
+        $apartment = Apartment::find($data['apartment_id']);
 
-        // inviare il nuovo messaggio
-
-        Mail::to($newMessage->email)->send(new NewMessage($newMessage));
+        if (!$apartment) {
+            // Gestisci il caso in cui l'appartamento non esista
+            return response()->json([
+                'success' => false,
+                'error' => 'L\'appartamento specificato non esiste',
+            ], 404);
+        }
 
         // ritornare un valore di successo al frontend
 
-        return response()->json([
-            'success' => true,
-            'apartments' => $apartments,
-        ]);
+        try {
+            // inviare il nuovo messaggio
+        
+            Mail::to($newMessage->email)->send(new NewMessage($newMessage, $apartment));
+        
+            return response()->json([
+                'success' => true,
+                'message' => 'Messaggio inviato con successo',
+                'apartments' => $apartment,
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'error' => 'Errore durante l\'invio dell\'email: ' . $e->getMessage(),
+            ], 500);
+        }
 
     }
 

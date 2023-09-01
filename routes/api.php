@@ -11,7 +11,7 @@ use App\Http\Controllers\Api\ApartmentController;
 
 
 
-Route::get('apartments', [ApartmentController::class, 'index'])->name('api.apartments.index'); // {nomeSito}/api/apartments
+Route::get('apartments', [ApartmentController::class, 'index'])->name('api.apartments.index');
 Route::get('apartments/{apartment}', [ApartmentController::class, 'show'])->name('api.apartments.show');
 Route::get('users/', [UserController::class, 'index'])->name('api.users.index');
 Route::post('messages/', [MessageController::class, 'store'])->name('api.messages.store');
