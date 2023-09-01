@@ -13,21 +13,29 @@ class MessagesTableSeeder extends Seeder
     {
         $messages = [
             [
+                "name"          => "Alessio",
+                "last_name"     => "Abbati",
                 "message"       => "ciao",
                 "email"         => "pinco@live.it",
                 "apartment_id"  => "1",
             ],
             [
+                "name"          => "Alessio",
+                "last_name"     => "Abbati",
                 "message"       => "ciao a tutti",
                 "email"         => "pallino@live.it",
                 "apartment_id"  => "2",
             ],
             [
+                "name"          => "Alessio",
+                "last_name"     => "Abbati",
                 "message"       => "ciao a tutti quanti",
                 "email"         => "panco@live.it",
                 "apartment_id"  => "3",
             ],
             [
+                "name"          => "Alessio",
+                "last_name"     => "Abbati",
                 "message"       => "salute",
                 "email"         => "pallo@live.it",
                 "apartment_id"  => "4",

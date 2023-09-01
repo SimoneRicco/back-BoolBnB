@@ -20,6 +20,7 @@ class Apartment extends Model
     use SoftDeletes;
     use Slugger;
     protected $table = 'apartments';
+    protected $fillable = ['title'];
 
     public function getRouteKey()
     {

@@ -12,8 +12,10 @@ return new class extends Migration
         Schema::create('messages', function (Blueprint $table) {
             $table->id();
 
+            $table->string('name', 50);
+            $table->string('last_name', 50);
             $table->text('message');
-            $table->string('email');
+            $table->string('email', 100);
             $table->unsignedBigInteger('apartment_id');
             $table->foreign('apartment_id')->references('id')->on('apartments')->onDelete('cascade');
 

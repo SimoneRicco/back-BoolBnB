@@ -12,8 +12,11 @@ class Message extends Model
 
     protected $table = 'messages';
 
+    protected $fillable = ['name', 'last_name', 'email', 'message', 'apartment_id'];
+
+
     public function apartment()
     {
-        return $this->belongsTo(Apartment::class);
+        return $this->belongsTo(Apartment::class, 'apartment_id');
     }
 }
