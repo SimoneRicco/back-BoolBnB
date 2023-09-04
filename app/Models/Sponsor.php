@@ -11,7 +11,8 @@ class Sponsor extends Model
     use HasFactory;
     protected $table = 'sponsors';
 
-    public function apartments() {
-        return $this->hasMany(Apartment::class);
+    public function apartments()
+    {
+        return $this->belongsToMany(Apartment::class);
     }
 }

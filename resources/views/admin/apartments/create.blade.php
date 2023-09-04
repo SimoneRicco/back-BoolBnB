@@ -213,25 +213,6 @@
                       <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
                     @enderror
                 </div>
-                  
-                <div class="mb-4">
-                    <h6 class="text-lg font-medium text-white">Sponsors</h6>
-                    
-                        <div class="flex items-center mb-2">
-                            {{-- <label for="sponsor" class="block text-sm font-medium text-white">sponsor</label> --}}
-                            <select class="form-select mt-1 block w-full py-2 px-3 border  bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm @error('sponsor_id') border-red-500 @enderror" id="sponsor" name="sponsor_id">
-                                <option selected>Change sponsor</option>
-
-                                @foreach ($sponsors as $sponsor)
-                                <option value="{{ $sponsor->id }}">{{ $sponsor->type }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                    
-                    @error('sponsors')
-                        <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
-                    @enderror
-                </div>
                 
                 <div class="mb-4">
                     <h6 class="text-lg font-medium text-white">Utilities</h6>
