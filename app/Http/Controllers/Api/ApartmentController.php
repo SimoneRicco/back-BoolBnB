@@ -13,13 +13,13 @@ class ApartmentController extends Controller
     {
         $user_id = $request->query('user_id');
         $address_id = $request->query('address_id');
+        $utilities = $request->query('utilities');
         $rooms = $request->query('rooms');
         $beds = $request->query('beds');
         $searchStr = $request->query('q');
-        $query = Apartment::with('address', 'user');
-        
+        $query = Apartment::with('address', 'user', 'utilities');
 
-        if($user_id) {
+        if ($user_id) {
             $query = $query->where('user_id', $user_id);
         }
 
@@ -35,6 +35,13 @@ class ApartmentController extends Controller
             });
         }
 
+        if ($utilities) {
+            // Filtra per utilities selezionate
+            $query = $query->whereHas('utilities', function ($query) use ($utilities) {
+                $query->whereIn('utility_id', $utilities);
+            });
+        }
+
         if($rooms){
             $query = $query->where('rooms', '>=', $rooms);
         }
@@ -42,6 +49,9 @@ class ApartmentController extends Controller
         if($beds){
             $query = $query->where('beds', '>=', $beds);
         }
+        
+       
+ 
 
         $apartment = $query->paginate(8);
 
