@@ -80,59 +80,50 @@
                 @enderror
             </div>
             
-            <input type="file" name="images[]" id="imageInput" multiple>
+            <div style="display: flex; align-items: center;">
+                <input type="file" name="images[]" id="imageInput" multiple class="text-white">
+                <button id="clearImages" type="button" style="background-color: white; border: none;">Clear All</button>
+            </div>
             <div id="imagePreviews" class="mt-3 space-y-3 flex"></div>
-
+            
             <script>
                 const imageInput = document.getElementById('imageInput');
                 const imagePreviews = document.getElementById('imagePreviews');
-                const coverImageSelections = {};
-
+            
                 imageInput.addEventListener('change', handleImageUpload);
-
+            
                 function handleImageUpload(event) {
                     imagePreviews.innerHTML = '';
-
+            
                     const files = event.target.files;
                     for (let i = 0; i < files.length; i++) {
                         const imgPreview = document.createElement('div');
                         imgPreview.classList.add('flex', 'items-center', 'space-x-2', 'relative');
-
+            
                         const imgElement = document.createElement('img');
                         imgElement.src = URL.createObjectURL(files[i]);
                         imgElement.classList.add('max-w-xs', 'max-h-32', 'border', 'border-gray-300', 'rounded');
-
+            
                         const radioInput = document.createElement('input');
                         radioInput.type = 'radio';
                         radioInput.name = 'cover_image_index';
                         radioInput.value = i;
                         radioInput.classList.add('text-blue-600', 'border-gray-300', 'rounded', 'focus:ring-blue-500', 'dark:focus:ring-blue-600', 'dark:ring-offset-gray-700', 'dark:focus:ring-offset-gray-700', 'focus:ring-2', 'dark:bg-gray-600', 'dark:border-gray-500');
-                        radioInput.addEventListener('change', () => {
-                            if (radioInput.checked) {
-                                coverImageSelections[i] = true;
-                            } else {
-                                delete coverImageSelections[i];
-                            }
-                        });
-
-                        const deleteButton = document.createElement('button');
-                        deleteButton.type = 'button';
-                        deleteButton.textContent = 'x';
-                        deleteButton.classList.add('absolute', 'top-0', 'right-0', 'text-red-500', 'hover:text-red-700', 'focus:outline-none', 'text-lg', 'mt-1', 'mr-1');
-                        deleteButton.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
-                        deleteButton.style.borderRadius = '50%';
-                        deleteButton.style.padding = '4px 8px';
-                        deleteButton.addEventListener('click', () => {
-                            imgPreview.remove();
-                            delete coverImageSelections[i];
-                        });
-
+            
                         imgPreview.appendChild(imgElement);
-                        imgPreview.appendChild(deleteButton);
                         imgPreview.appendChild(radioInput);
-
+            
                         imagePreviews.appendChild(imgPreview);
                     }
+                }
+            
+                document.getElementById('clearImages').addEventListener('click', resetImageInput);
+            
+                function resetImageInput() {
+                    imageInput.value = null;
+                    imagePreviews.innerHTML = '';
+                    const radioInputs = document.querySelectorAll('input[name="cover_image_index"]');
+                    radioInputs.forEach(input => input.checked = false);
                 }
             </script>
 

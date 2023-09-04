@@ -17,7 +17,7 @@ class MessageController extends Controller
         'last_name'        => 'required|string|max:50',
         'email'            => 'required|email|max:250',
         'message'          => 'required|string',
-        // 'apartment_id'     => 'required|integer|exists:apartments,id',
+        'apartment_id'     => 'required|integer',
     ];
     
     public function store(Request $request)
