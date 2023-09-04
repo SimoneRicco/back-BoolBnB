@@ -19,21 +19,7 @@ class ApartmentController extends Controller
         $searchStr = $request->query('q');
         $query = Apartment::with('address', 'user', 'utilities');
 
-        if ($user_id) {
-            $query = $query->where('user_id', $user_id);
-        }
-
-        if ($address_id) {
-            $query = $query->where('address_id', $address_id);
-        }
-
-        if ($searchStr) {
-            $query = $query->whereHas('address', function ($query) use ($searchStr) {
-                $query->where('address', 'LIKE', "%{$searchStr}%");
-            })->orWhereHas('user', function ($query) use ($searchStr) {
-                $query->where('lastname', 'LIKE', "%{$searchStr}%");
-            });
-        }
+        
 
         if ($utilities) {
             // Filtra per utilities selezionate
@@ -50,6 +36,21 @@ class ApartmentController extends Controller
             $query = $query->where('beds', '>=', $beds);
         }
         
+        if ($user_id) {
+            $query = $query->where('user_id', $user_id);
+        }
+
+        if ($address_id) {
+            $query = $query->where('address_id', $address_id);
+        }
+
+        if ($searchStr) {
+            $query = $query->whereHas('address', function ($query) use ($searchStr) {
+                $query->where('address', 'LIKE', "%{$searchStr}%");
+            })->orWhereHas('user', function ($query) use ($searchStr) {
+                $query->where('lastname', 'LIKE', "%{$searchStr}%");
+            });
+        }
        
  
 
