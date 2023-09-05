@@ -20,7 +20,7 @@
     
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            @foreach ($messages as $message)
+            @foreach ($messages->sortByDesc('created_at') as $message)
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg m-2">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
     
@@ -38,6 +38,11 @@
                 </div>
             </div>
             @endforeach
+
+            <!-- Aggiungi il paginator di Tailwind CSS -->
+            <div class="mt-4">
+                {{ $messages->links() }}
+            </div>
         </div>
     </div>
 </x-app-layout>
