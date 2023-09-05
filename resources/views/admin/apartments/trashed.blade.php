@@ -66,7 +66,7 @@
                             {{ implode(', ', $apartment->utilities->pluck('name')->all()) }}
                         </td>
                         <td class="p-3">
-                            <p>{{ $apartment->sponsor->type }}</p>
+                            <p>{{ implode(', ', $apartment->sponsors->pluck('type')->all()) }}</p>
                         </td>
                         <td class="p-3">
                             <div style="display: flex; gap: 10px;">
