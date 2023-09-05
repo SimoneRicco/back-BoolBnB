@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\MessageController;
 use App\Http\Controllers\Admin\ApartmentController;
 use App\Http\Controllers\Admin\BraintreeController;
 use App\Http\Controllers\Admin\PageController as AdminPageController;
@@ -27,6 +28,7 @@ Route::middleware('auth', 'verified')
 
         Route::resource('apartments', ApartmentController::class);
         Route::resource('users', UserController::class);
+        Route::resource('messages', MessageController::class);
     });
 
 Route::middleware('auth')->group(function () {
