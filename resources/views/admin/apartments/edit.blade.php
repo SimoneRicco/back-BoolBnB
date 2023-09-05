@@ -150,26 +150,15 @@
                       <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
                     @enderror
                 </div>
-            </div>
-
-            <div class="flex space-x-4 justify-around">
 
                 <div class="mb-4">
-                    <label class="block font-semibold text-white">Square Meters</label>
-                    <div class="space-y-2">
-                        @for ($i = 20; $i <= 180; $i += 10)
-                        <label class="flex items-center">
-                            <input type="radio" name="square_meters" value="{{ $i }}" class="text-blue-600 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" {{ old('square_meters', $apartment->square_meters) == $i ? 'checked' : '' }}>
-                            <span class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{ $i }}mq</span>
-                        </label>
-                        @endfor
-                    </div>
+                    <label for="square_meters" class="block font-semibold text-white">Square Meters</label>
+                    <input type="number" name="square_meters" id="square_meters" min="20" max="180" step="10" value="{{ old('square_meters', $apartment->square_meters) }}" class="text-white border-gray-300 rounded-md focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
                     @error('square_meters')
                     <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
                     @enderror
                 </div>
-                
-                
+
                 <div class="mb-4">
                     <label class="block font-semibold text-white">Is Available?</label>
                     <div class="space-y-2">
@@ -186,31 +175,31 @@
                     <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
                     @enderror
                 </div>
-                
-                <div class="mb-4">
-                    <h6 class="text-lg font-medium text-white">Utilities</h6>
-                    @foreach ($utilities as $utility)
-                        <div class="flex items-center mb-2">
-                            <input 
-                                class="form-checkbox h-5 w-5 text-blue-600" 
-                                type="checkbox" 
-                                id="utility{{ $utility->id }}" 
-                                value="{{ $utility->id }}"
-                                name="utilities[]"
-                                @if (in_array($utility->id, old('utilities', $apartment->utilities->pluck('id')->all()))) checked @endif 
-                            >
-                            <label class="ml-2 text-white" for="utility{{ $utility->id }}">
-                                {{ $utility->name }}
-                            </label>
-                        </div>
-                    @endforeach
-                    @error('utilities')
-                    <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
-                    @enderror
-                </div>
+            </div>
+
+            <div class="mb-4">
+                <h6 class="text-lg font-medium text-white">Utilities</h6>
+                @foreach ($utilities as $utility)
+                    <div class="flex items-center mb-2">
+                        <input 
+                            class="form-checkbox h-5 w-5 text-blue-600" 
+                            type="checkbox" 
+                            id="utility{{ $utility->id }}" 
+                            value="{{ $utility->id }}"
+                            name="utilities[]"
+                            @if (in_array($utility->id, old('utilities', $apartment->utilities->pluck('id')->all()))) checked @endif 
+                        >
+                        <label class="ml-2 text-white" for="utility{{ $utility->id }}">
+                            {{ $utility->name }}
+                        </label>
+                    </div>
+                @endforeach
+                @error('utilities')
+                <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
+                 @enderror
+            </div>
                 
 
-            </div>
 
             <div class="mb-4">
                 <button type="submit" class="px-4 py-2 text-white bg-green-700 rounded">Invia</button>
