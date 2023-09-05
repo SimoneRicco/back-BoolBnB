@@ -40,10 +40,10 @@ class BraintreeController extends Controller
         $sponsor = Sponsor::find($request['sponsor-plan']);
         $apartment = Apartment::where('slug', $request['apartment'])->firstOrFail();
 
-        dd($apartment->isSponsored());
-        if ($apartment->isSponsored()) {
-            return redirect()->route('admin.apartments.payment')->with('transition_error', 'Questo appartamento è già sponsorizzato.');
-        }
+        // dd($apartment->isSponsored());
+        // if ($apartment->isSponsored()) {
+        //     return redirect()->route('admin.apartments.payment')->with('transition_error', 'Questo appartamento è già sponsorizzato.');
+        // }
 
         $result = $gateway->transaction()->sale([
             'amount' => $sponsor->price,

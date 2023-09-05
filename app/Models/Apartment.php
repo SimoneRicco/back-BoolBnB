@@ -73,14 +73,14 @@ class Apartment extends Model
             }
         });
     }
-    public function isSponsored()
-    {
-        $subscriptionEndDate = Carbon::parse($this->pivot->subscription_date)->addDays($this->pivot->duration);
+    // public function isSponsored()
+    // {
+    //     $subscriptionEndDate = Carbon::parse($this->pivot->subscription_date)->addDays($this->pivot->duration);
 
-        return $subscriptionEndDate > now();
+    //     return $subscriptionEndDate > now();
 
-        // return $this->sponsors()
-        //     ->where('subscription_date', '>', now()) //falso
-        //     ->exists();
-    }
+    //     // return $this->sponsors()
+    //     //     ->where('subscription_date', '>', now()) //falso
+    //     //     ->exists();
+    // }
 }
