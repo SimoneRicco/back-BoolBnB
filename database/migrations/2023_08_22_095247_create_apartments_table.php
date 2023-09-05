@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    
+
     public function up()
     {
         Schema::create('apartments', function (Blueprint $table) {
@@ -21,31 +21,26 @@ return new class extends Migration
             $table->boolean('available');
 
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('sponsor_id');
-            
-            
+
+
             $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('sponsor_id')->references('id')->on('sponsors');
 
             $table->softDeletes();
             $table->timestamps();
         });
     }
 
-    
+
     public function down()
     {
         Schema::table('apartments', function (Blueprint $table) {
             // elimino la chiave esterna
 
             $table->dropForeign('apartments_user_id_foreign');
-            $table->dropForeign('apartments_sponsor_id_foreign');
-        
+
             // elimino la colonna
 
             $table->dropColumn('user_id');
-            $table->dropColumn('sponsor_id');
         });
-
     }
 };

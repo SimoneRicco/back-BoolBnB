@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use App\Models\User;
 use App\Models\View;
 use App\Models\Image;
@@ -49,16 +50,17 @@ class Apartment extends Model
 
     public function image()
     {
-        return $this->hasMany(Image::class);  
+        return $this->hasMany(Image::class);
     }
-   
-    public function utilities() {
+
+    public function utilities()
+    {
         return $this->belongsToMany(Utility::class);
     }
 
-    public function sponsor()
+    public function sponsors()
     {
-        return $this->belongsTo(Sponsor::class);
+        return $this->belongsToMany(Sponsor::class);
     }
 
     protected static function boot()
@@ -70,5 +72,15 @@ class Apartment extends Model
                 $apartment->user_id = auth()->user()->id;
             }
         });
+    }
+    public function isSponsored()
+    {
+        $subscriptionEndDate = Carbon::parse($this->pivot->subscription_date)->addDays($this->pivot->duration);
+
+        return $subscriptionEndDate > now();
+
+        // return $this->sponsors()
+        //     ->where('subscription_date', '>', now()) //falso
+        //     ->exists();
     }
 }
