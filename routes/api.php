@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\viewController;
 use App\Http\Controllers\Api\ImageController;
 use App\Http\Controllers\Api\AddressController;
 use App\Http\Controllers\Api\MessageController;
+use App\Http\Controllers\Api\UtilityController;
 use App\Http\Controllers\Api\ApartmentController;
 
 
