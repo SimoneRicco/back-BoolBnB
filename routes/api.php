@@ -18,4 +18,6 @@ Route::post('messages/', [MessageController::class, 'store'])->name('api.message
 Route::get('images', [ImageController::class, 'index'])->name('api.images.index');
 Route::get('addresses', [AddressController::class, 'index'])->name('api.addresses.index');
 Route::get('views', [ViewController::class, 'index'])->name('api.views.index');
+Route::get('utilities', [UtilityController::class, 'index'])->name('api.utilities.index');
+
 
