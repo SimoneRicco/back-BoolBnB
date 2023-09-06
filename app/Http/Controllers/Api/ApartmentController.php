@@ -51,6 +51,10 @@ class ApartmentController extends Controller
                 $query->where('lastname', 'LIKE', "%{$searchStr}%");
             });
         }
+
+        $query = $query->orderByDesc(function ($query) {
+            $query->selectRaw('CASE WHEN EXISTS (SELECT 1 FROM apartment_sponsor WHERE apartment_sponsor.apartment_id = apartments.id) THEN 1 ELSE 0 END');
+        });
        
  
 
