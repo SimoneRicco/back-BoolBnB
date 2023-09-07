@@ -81,8 +81,13 @@
             </div>
             
             <div style="display: flex; align-items: center;">
-                <input type="file" name="images[]" id="imageInput" multiple class="text-white">
+                <input type="file" name="images[]" id="imageInput" multiple class="text-white @error('images') border-red-500 @enderror">
                 <button id="clearImages" type="button" style="background-color: white; border: none;">Clear All</button>
+                @error('images[]')
+                <div class="text-red-500 text-xs mt-1">
+                    {{ $message }}
+                </div>
+                @enderror
             </div>
             <div id="imagePreviews" class="mt-3 space-y-3 flex"></div>
             
