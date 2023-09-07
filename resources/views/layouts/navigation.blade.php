@@ -26,6 +26,9 @@
                     <x-nav-link :href="route('admin.apartments.create')" :active="request()->routeIs('New Apartment')">
                         {{ __('New Apartment') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('admin.apartments.receives')" :active="request()->routeIs('Your Receives')">
+                        {{ __('Your Receives') }}
+                    </x-nav-link>
                 </div>
             </div>
 

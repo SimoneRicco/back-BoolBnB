@@ -1,16 +1,4 @@
 <x-app-layout>
-    @if (session('transition_success'))
-    @php
-        $transition = session('transition_success')
-    @endphp
-    <div class="bg-green-500 text-white p-4">
-         Your transition success!!! (ID: {{$transition->transaction->id}})
-        {{-- <form action="{{ route('admin.apartments.cancel', ['apartment' => $apartment]) }}" method="post">
-            @csrf
-            <button class="bg-yellow-500 text-white px-4 py-2 rounded">Cancel</button>
-        </form> --}}
-    </div>
-    @endif
 
     @if (session('transition_error'))
     @php
@@ -18,12 +6,12 @@
     @endphp
     <div class="bg-red-500 text-white p-4">
         Your transition failed!!! ({{$transition}})
-   </div>
-        
+   </div>   
     @endif
 
 
     <p>Card number to use: 4111111111111111</p>
+    <p>{{ $apartment->id }}</p>
     <form action="{{ route('admin.apartments.checkout', ['apartment' => $apartment]) }}" method="post" id="braintree-form">
         @csrf
         @method("POST")
