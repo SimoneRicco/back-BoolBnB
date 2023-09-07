@@ -3,11 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use Braintree\Gateway;
+use App\Models\Sponsor;
 use App\Models\Apartment;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use App\Models\Sponsor;
 use Psy\Readline\Hoa\Console;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
 
 class BraintreeController extends Controller
 {
@@ -40,11 +41,6 @@ class BraintreeController extends Controller
         $sponsor = Sponsor::find($request['sponsor-plan']);
         $apartment = Apartment::where('slug', $request['apartment'])->firstOrFail();
 
-        // dd($apartment->isSponsored());
-        // if ($apartment->isSponsored()) {
-        //     return redirect()->route('admin.apartments.payment')->with('transition_error', 'Questo appartamento è già sponsorizzato.');
-        // }
-
         $result = $gateway->transaction()->sale([
             'amount' => $sponsor->price,
             // 'amount' => 2500,
@@ -56,11 +52,17 @@ class BraintreeController extends Controller
         ]);
         // dd($result);
         if ($result->success) {
-            // Transazione avvenuta con successo, ora possiamo associare l'appartamento all'abbonamento
-            $apartment->sponsors()->attach($sponsor->id, [
-                'subscription_date' => now() // Imposta la data corrente
-            ]);
+            if ($apartment->sponsors()->where('valid', true)->count() > 0) {
 
+                $apartment->sponsors()->where('valid', true)->update([
+                    'expire_date' => DB::raw('DATE_ADD(expire_date, INTERVAL ' . $sponsor->duration . ' DAY)'),
+                ]);
+            } else { //se non esise una sponsorizzazione attiva
+                $apartment->sponsors()->attach($sponsor->id, [
+                    'subscription_date' => now(), // Imposta la data corrente
+                    'expire_date' => (now()->addDays($sponsor->duration)),
+                ]);
+            }
             return to_route('admin.apartments.payment')->with('transition_success', $result);
         } else {
             return redirect()->route('admin.apartments.payment')->with('transition_error', $result->message);

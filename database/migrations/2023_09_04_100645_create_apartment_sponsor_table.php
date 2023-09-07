@@ -14,8 +14,9 @@ return new class extends Migration
     public function up()
     {
         Schema::create('apartment_sponsor', function (Blueprint $table) {
-            $table->integer('duration')->nullable()->default(30);
             $table->date('subscription_date')->nullable();
+            $table->date('expire_date')->nullable();
+            $table->boolean('valid')->default(true);
 
             $table->unsignedBigInteger('apartment_id');
             $table->unsignedBigInteger('sponsor_id');
