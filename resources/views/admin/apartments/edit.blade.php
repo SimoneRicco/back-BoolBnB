@@ -202,8 +202,29 @@
 
 
             <div class="mb-4">
-                <button type="submit" class="px-4 py-2 text-white bg-green-700 rounded">Invia</button>
+                <button type="submit" class="px-4 py-2 text-white bg-green-700 rounded" onclick="disableSubmitButton()">Invia</button>
             </div>
+            <script>
+                let isSubmitting = false; // Variabile di stato per il controllo dell'invio
+
+                document.querySelector('form').addEventListener('submit', function (e) {
+                if (isSubmitting) {
+                    e.preventDefault(); // Impedisce l'invio duplicato del modulo
+                    return;
+                }
+
+                // Imposta lo stato di invio su true per disabilitare il pulsante
+                isSubmitting = true;
+
+                // Disabilita il pulsante di invio
+                document.getElementById('create-new-apartment').disabled = true;
+            });
+            // Dopo aver gestito la richiesta di invio del modulo
+            // Riabilita il pulsante di invio e reimposta lo stato di invio
+            document.getElementById('create-new-apartment').disabled = false;
+            isSubmitting = false;
+
+            </script>
             <script>
                 var options = {
                     searchOptions: {
