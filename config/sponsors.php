@@ -3,17 +3,17 @@
 return [
     [
         'type'                  => 'Gold',
-        'price'                 => 20,
+        'price'                 => 9.99,
         'duration'              => 6,
     ],
     [
         'type'                  => 'Silver',
-        'price'                 => 10,
+        'price'                 => 5.99,
         'duration'              => 3,
     ],
     [
         'type'                  => 'Bronze',
-        'price'                 => 5,
+        'price'                 => 2.99,
         'duration'              => 1,
     ],
 ];
