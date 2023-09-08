@@ -23,7 +23,7 @@
                     <col>
                     <col>
                     <col>
-                    <col>
+                    {{-- <col> --}}
                     <col class="w-24">
                 </colgroup>
                 <thead class="dark:bg-gray-700">
@@ -35,7 +35,7 @@
                         <th class="p-3 text-blue-600/100">Metri quadrati</th>
                         <th class="p-3 text-blue-600/100">Indirizzo</th>
                         <th class="p-3 text-blue-600/100">Utilities</th>
-                        <th class="p-3 text-blue-600/100">Sponsors</th>
+                        {{-- <th class="p-3 text-blue-600/100">Sponsors</th> --}}
                         <th class="p-3 text-center text-blue-600/100">Actions</th>
                     </tr>
                 </thead>
@@ -67,9 +67,9 @@
                             {{ implode(', ', $apartment->utilities->pluck('name')->all()) }}
                         </td>
                         
-                        <td class="p-3">
+                        {{-- <td class="p-3">
                             {{ implode(', ', $apartment->sponsors->pluck('type')->all()) }}
-                        </td>
+                        </td> --}}
                         <td class="p-3">
                             <div class="flex justify-center gap-4">
                                 <button class="px-7 py-1 font-semibold border rounded dark:border-gray-100 dark:text-gray-100" onclick="window.location='{{ route('admin.apartments.payment', ['apartment' => $apartment]) }}'">Sponsorize</button>

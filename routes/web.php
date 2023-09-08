@@ -23,8 +23,12 @@ Route::middleware('auth', 'verified')
         Route::delete('/apartment/{apartment}/harddelete', [ApartmentController::class, 'harddelete'])->name('apartments.harddelete');
         route::post('/apartment/{apartment}/cancel', [ApartmentController::class, 'cancel'])->name('apartments.cancel');
 
+
         Route::any('/payment', [BraintreeController::class, 'token'])->name('apartments.payment');
         Route::any('/payment/checkout', [BraintreeController::class, 'pay'])->name('apartments.checkout');
+
+        Route::get('/payment/receives', [BraintreeController::class, 'index'])->name('apartments.receives');
+        // Route::get('/payment/receives/{receive}', [BraintreeController::class, 'show'])->name('apartments.receive');
 
         Route::resource('apartments', ApartmentController::class);
         Route::resource('users', UserController::class);

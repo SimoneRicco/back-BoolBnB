@@ -16,6 +16,8 @@ return new class extends Migration
         Schema::create('apartment_sponsor', function (Blueprint $table) {
             $table->date('subscription_date')->nullable();
             $table->date('expire_date')->nullable();
+            $table->float('price');
+            $table->string('order_code', 20);
             $table->boolean('valid')->default(true);
 
             $table->unsignedBigInteger('apartment_id');
