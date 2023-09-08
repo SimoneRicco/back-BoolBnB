@@ -44,7 +44,7 @@
             @endif
         @endforeach
         <div id="dropin-container"></div>
-        <input type="button" id="submit-button" class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded" value="Buy">
+        <input type="button" id="submit-button" class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded" value="Buy" :class="{ 'opacity-50 pointer-events-none': isSending }">
         <input type="hidden" id="payload-nonce" name="payment_method_nonce">
     </form>
     <script>
@@ -52,6 +52,7 @@
     const button = document.querySelector('#submit-button');
     const input = document.querySelector('#payload-nonce'); 
     const form = document.querySelector('#braintree-form'); 
+    let isSending = false;
 
     const auth_token = "{{ $token }}";
 
@@ -65,7 +66,10 @@
             // Submit payload.nonce to your server
             //console.log(payload.nonce)
             input.value = payload.nonce;
-            form.submit();
+            if (!isSending) { // Controlla se non sta già inviando il form
+                isSending = true; // Imposta la variabile su true durante l'invio
+                form.submit();
+            }
         });
       });
     });
