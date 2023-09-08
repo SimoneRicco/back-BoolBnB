@@ -18,6 +18,7 @@ class ApartmentController extends Controller
 {
     private $validations = [
         'title'             => 'required|string|max:50',
+        'description'       => 'required|string',
         'address'           => 'required|string',
         'latitude'          => 'required|numeric',
         'longitude'         => 'required|numeric',
@@ -60,6 +61,7 @@ class ApartmentController extends Controller
 
     public function store(Request $request)
     {
+        // dd($request);
         $request->validate($this->validations, $this->validations_messages);
         $data = $request->all();
         $coverImageIndex = $request->input('cover_image_index', -1);
@@ -67,6 +69,7 @@ class ApartmentController extends Controller
         // Salvare i dati nel database per gli apartment
         $newApartment = new apartment();
         $newApartment->title            = $data['title'];
+        $newApartment->description      = $data['description'];
         $newApartment->user_id          = auth()->user()->id;
         $newApartment->slug             = apartment::slugger($data['title']);
         $newApartment->rooms            = $data['rooms'];
@@ -157,6 +160,7 @@ class ApartmentController extends Controller
         $coverImageIndex = $request->input('cover_image_index', -1);
 
         $apartment->title            = $data['title'];
+        $apartment->description      = $data['description'];
         $apartment->user_id          = auth()->user()->id;
         $apartment->rooms            = $data['rooms'];
         $apartment->beds             = $data['beds'];

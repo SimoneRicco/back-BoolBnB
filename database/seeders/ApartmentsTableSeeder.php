@@ -21,6 +21,7 @@ class ApartmentsTableSeeder extends Seeder
             $apartment = Apartment::create([
                 'user_id'           => $objApartment['user_id'],
                 'title'          => $objApartment['title'],
+                'description'          => $objApartment['description'],
                 'slug'              => $slug,
                 'rooms'     => $objApartment['rooms'],
                 'beds'           => $objApartment['beds'],

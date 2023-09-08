@@ -5,7 +5,7 @@
             @method('put')
 
             <div class="mb-4">
-                <label for="title" class="block mb-1 font-semibold text-white">Title</label>
+                <label for="title" class="block mb-1 font-semibold dark:text-white">Title</label>
                 <input type="text" id="title" name="title" class="w-full px-4 py-2 border rounded @error('title') border-red-500 @enderror" value="{{ old('title', $apartment->title) }}">
                 @error('title')
                     <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
@@ -13,7 +13,7 @@
             </div>
             
             <div id="mySearchBox">
-                <h1 class="text-white">Address</h1>
+                <h1 class="dark:text-white">Address</h1>
             </div>
             <div class="mb-3">
                 {{-- <label for="address" class="block text-sm font-medium text-white">Address</label> --}}
@@ -46,14 +46,14 @@
             </div>
 
             <div style="display: flex; align-items: center;">
-                <input type="file" name="images[]" id="imageInput" multiple class="text-white">
+                <input type="file" name="images[]" id="imageInput" multiple class="dark:text-white">
                 <button id="clearImages" type="button" style="background-color: white; border: none;">Clear All</button>
             </div>
         
             <div id="imagePreviews" class="mt-3 space-y-3 flex"></div>
         
             <div class="mb-3">
-                <label for="existing_images" class="form-label text-white">Existing Images</label>
+                <label for="existing_images" class="form-label dark:text-white">Existing Images</label>
                 <button id="clearImages" type="button" style="background-color: white; border: none;">Clear All</button>
                 <div style="display: flex; flex-wrap: wrap;" id="existingImagePreviews">
                     @foreach($images as $image)
@@ -116,7 +116,7 @@
 
             <div class="flex space-x-4 justify-center">
                 <div class="mb-4">
-                    <label for="rooms" class="block mb-1 font-semibold text-white">Rooms</label>
+                    <label for="rooms" class="block mb-1 font-semibold dark:text-white">Rooms</label>
                     <select name="rooms" id="rooms" class="w-full px-4 py-2 border rounded @error('rooms') border-red-500 @enderror">
                       @for ($i = 1; $i <= 20; $i++)
                         <option value="{{ $i }}" {{ old('rooms', $apartment->rooms) == $i ? 'selected' : '' }}>{{ $i }}</option>
@@ -128,7 +128,7 @@
                 </div>
     
                 <div class="mb-4">
-                    <label for="beds" class="block mb-1 font-semibold text-white">Beds</label>
+                    <label for="beds" class="block mb-1 font-semibold dark:text-white">Beds</label>
                     <select name="beds" id="beds" class="w-full px-4 py-2 border rounded @error('beds') border-red-500 @enderror">
                       @for ($i = 1; $i <= 20; $i++)
                         <option value="{{ $i }}" {{ old('beds', $apartment->beds) == $i ? 'selected' : '' }}>{{ $i }}</option>
@@ -140,7 +140,7 @@
                 </div>
     
                 <div class="mb-4">
-                    <label for="bathrooms" class="block mb-1 font-semibold text-white">Bathrooms</label>
+                    <label for="bathrooms" class="block mb-1 font-semibold dark:text-white">Bathrooms</label>
                     <select name="bathrooms" id="bathrooms" class="w-full px-4 py-2 border rounded @error('bathrooms') border-red-500 @enderror">
                       @for ($i = 1; $i <= 10; $i++)
                         <option value="{{ $i }}" {{ old('bathrooms', $apartment->bathrooms) == $i ? 'selected' : '' }}>{{ $i }}</option>
@@ -152,15 +152,15 @@
                 </div>
 
                 <div class="mb-4">
-                    <label for="square_meters" class="block font-semibold text-white">Square Meters</label>
-                    <input type="number" name="square_meters" id="square_meters" min="20" max="180" step="10" value="{{ old('square_meters', $apartment->square_meters) }}" class="text-white border-gray-300 rounded-md focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                    <label for="square_meters" class="block font-semibold dark:text-white">Square Meters</label>
+                    <input type="number" name="square_meters" id="square_meters" min="20" max="180" step="10" value="{{ old('square_meters', $apartment->square_meters) }}" class="dark:text-white border-gray-300 rounded-md focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
                     @error('square_meters')
                     <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
                     @enderror
                 </div>
 
                 <div class="mb-4">
-                    <label class="block font-semibold text-white">Is Available?</label>
+                    <label class="block font-semibold dark:text-white">Is Available?</label>
                     <div class="space-y-2">
                         <label class="flex items-center">
                             <input type="radio" name="available" value="1" class="text-blue-600 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" {{ old('available', $apartment->available) == 1 ? 'checked' : '' }}>
@@ -178,30 +178,33 @@
             </div>
 
             <div class="mb-4">
-                <h6 class="text-lg font-medium text-white">Utilities</h6>
-                @foreach ($utilities as $utility)
-                    <div class="flex items-center mb-2">
-                        <input 
-                            class="form-checkbox h-5 w-5 text-blue-600" 
-                            type="checkbox" 
-                            id="utility{{ $utility->id }}" 
-                            value="{{ $utility->id }}"
-                            name="utilities[]"
-                            @if (in_array($utility->id, old('utilities', $apartment->utilities->pluck('id')->all()))) checked @endif 
-                        >
-                        <label class="ml-2 text-white" for="utility{{ $utility->id }}">
-                            {{ $utility->name }}
-                        </label>
-                    </div>
-                @endforeach
-                @error('utilities')
-                <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
-                 @enderror
+                <h6 class="text-lg font-medium dark:text-white">Utilities</h6>
+                <div class=" flex flex-wrap justify-center">
+                    @foreach ($utilities as $utility)
+                        <div class="flex items-center mb-2">
+                            <label class="mr-2 ml-4 dark:text-white" for="utility{{ $utility->id }}">
+                                {{ $utility->name }}
+                            </label>
+                            <input 
+                                class="form-checkbox h-5 w-5 text-blue-600" 
+                                type="checkbox" 
+                                id="utility{{ $utility->id }}" 
+                                value="{{ $utility->id }}"
+                                name="utilities[]"
+                                @if (in_array($utility->id, old('utilities', $apartment->utilities->pluck('id')->all()))) checked @endif 
+                            >
+                        </div>
+                    @endforeach
+                    @error('utilities')
+                    <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
+                    @enderror
+                </div>
             </div>
                 
+            <label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Descrizione</label>
+            <textarea id="description" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Write your description here..." name="description">{{ old('description', $apartment->description) }}</textarea>
 
-
-            <div class="mb-4">
+            <div class="my-4">
                 <button type="submit" class="px-4 py-2 text-white bg-green-700 rounded">Invia</button>
             </div>
             <script>

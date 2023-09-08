@@ -4,6 +4,7 @@ return
     [
         [
             'title'           => 'Casa sul bel mare',
+            'description'     => "Una residenza costiera incantevole situata lungo le rive di uno splendido tratto di mare. Questa dimora offre un ambiente tranquillo e rilassante, con vista panoramica sull'oceano che cattura la bellezza mozzafiato delle acque azzurre che si estendono all'orizzonte. Caratterizzata da un design elegante e da finiture di alta qualità, questa casa è l'ideale per chi desidera vivere o trascorrere momenti speciali in un luogo dove il suono delle onde e la brezza marina diventano la colonna sonora della vita quotidiana. Con accesso diretto alla spiaggia e spazi esterni ben curati, questa casa rappresenta il connubio perfetto tra lusso, comfort e il fascino senza tempo della vita costiera. Vivere qui significa abbandonare le preoccupazioni e immergersi completamente nella magia del mare.",
             'rooms'           => 5,
             'beds'            => 3,
             'bathrooms'       => 1,
@@ -15,6 +16,7 @@ return
         ],
         [
             'title'           => 'loft nel centro città',
+            'description'     => "Una straordinaria dimora urbana situata in posizione privilegiata nel centro cittadino. Questo loft esprime l'essenza della vita moderna in città, offrendo un'esperienza di lusso e comodità senza eguali. Con un design contemporaneo e spazi aperti, questo loft è un'oasi di stile e raffinatezza in mezzo all'energia pulsante della vita cittadina. Le ampie vetrate consentono di godere di una vista mozzafiato sulla skyline urbana, mentre l'architettura interna versatile offre infinite opportunità per personalizzare gli spazi. A pochi passi si trovano i migliori ristoranti, negozi di tendenza e luoghi culturali, rendendo questo loft la base ideale per immergersi completamente nella vita urbana. Questa casa è l'incarnazione dell'eleganza metropolitana e del comfort moderno, pronto ad accogliere chiunque cerchi una residenza straordinaria nel cuore pulsante della città.",
             'rooms'           => 4,
             'beds'            => 2,
             'bathrooms'       => 1,
@@ -26,6 +28,7 @@ return
         ],
         [
             'title'           => 'monolocale',
+            'description'     => "Un rifugio affascinante e compatto perfetto per chi cerca un'abitazione dal design intelligente e funzionale. Questo monolocale è progettato con cura per ottimizzare lo spazio, offrendo una zona living, una cucina ben attrezzata e un'area notte integrata in un'unica soluzione. Grazie a una distribuzione efficiente degli spazi e a una decorazione moderna, questo monolocale è l'ideale per chi ama la semplicità senza rinunciare al comfort. Con la sua atmosfera accogliente e il suo design minimalista, Il nostro monolocale accogliente è il luogo perfetto per chi desidera un'abitazione dal carattere unico e pratico. Vive l'esperienza di un monolocale ben progettato e goditi una vita comoda e senza complicazioni.",
             'rooms'           => 2,
             'beds'            => 1,
             'bathrooms'       => 1,
@@ -37,6 +40,7 @@ return
         ],
         [
             'title'           => 'trilocale in periferia',
+            'description'     => "Il nostro trilocale in periferia rappresenta la quintessenza della vita tranquilla e familiare. Questo spazioso appartamento con tre camere da letto offre una comoda sistemazione per chi cerca spazi ampi e un ambiente sereno. Situato in una zona periferica, lontano dal trambusto della città, questo trilocale offre una piacevole sensazione di tranquillità e spazi aperti. L'appartamento dispone di una cucina moderna, un'accogliente zona living e ampie camere da letto, il tutto pensato per soddisfare le esigenze di una famiglia o di chi desidera più spazio. Il verde circostante e la vicinanza a parchi e servizi rendono questo trilocale ideale per chi ama la vita all'aria aperta e il relax. Il nostro trilocale in periferia è la scelta perfetta per chi cerca un rifugio lontano dal caos, senza rinunciare al comfort e alla convenienza della vita in città.",
             'rooms'           => 5,
             'beds'            => 3,
             'bathrooms'       => 2,
@@ -48,6 +52,7 @@ return
         ],
         [
             'title'           => 'appartamento a due passi dall\'arno',
+            'description'     => "Questo appartamento a due passi dall'Arno è una gemma incantevole situata in una posizione privilegiata, a breve distanza dalle rive del fiume Arno a Firenze. Questa residenza offre un'opportunità unica di vivere nella culla dell'arte, della cultura e della storia italiana. Con una vista panoramica sul maestoso fiume Arno e i suoi celebri ponti, questo appartamento è un rifugio elegante e romantico. L'interno è caratterizzato da un design raffinato e finiture di alta qualità, offrendo un ambiente di lusso e comfort. La sua vicinanza ai monumenti storici, ai musei e ai ristoranti di classe mondiale lo rende il luogo ideale per immergersi completamente nell'atmosfera unica di Firenze. Questo appartamento a due passi dall'Arno è la scelta perfetta per coloro che desiderano vivere in uno dei luoghi più iconici d'Italia, dove la bellezza della città e la maestosità del fiume si fondono in un'esperienza straordinaria.",
             'rooms'           => 3,
             'beds'            => 3,
             'bathrooms'       => 1,
@@ -59,6 +64,7 @@ return
         ],
         [
             'title'           => 'bilocale luminoso',
+            'description'     => "Il nostro bilocale luminoso è un appartamento affascinante che si distingue per la sua abbondante luce naturale. Grazie a ampie finestre e a un design aperto, questo bilocale è baciato dal sole durante tutto il giorno, creando un'atmosfera calda e accogliente. L'ampio soggiorno, con spazio per una zona pranzo, si apre su una cucina moderna e ben attrezzata, creando un ambiente ideale per cucinare e intrattenere. La camera da letto è altrettanto luminosa e offre un rifugio confortevole per rilassarsi dopo una giornata intensa. Situato in una zona tranquilla e ben collegata, Il nostro bilocale luminoso è la scelta perfetta per chi ama gli spazi aperti e l'atmosfera invitante della luce naturale. Questo appartamento è ideale per chi desidera una vita confortevole e luminosa in una casa dal design moderno e accattivante.",
             'rooms'           => 3,
             'beds'            => 1,
             'bathrooms'       => 1,
@@ -70,6 +76,7 @@ return
         ],
         [
             'title'           => 'monolocale per studenti',
+            'description'     => "Il nostro monolocale per studenti è uno spazio intelligente e funzionale progettato per soddisfare le esigenze degli studenti universitari. Questo monolocale offre tutto il necessario per un ambiente di studio e vita confortevole. La zona living comprende una cucina compatta, un tavolo per studiare e un'area per il relax, il tutto in un unico ambiente ben organizzato. La camera da letto è progettata per massimizzare lo spazio, offrendo un luogo tranquillo per riposare e concentrarsi sugli studi. Situato in una zona vicina al campus universitario e ai servizi essenziali, Il nostro monolocale per studenti è la soluzione ideale per chi cerca un alloggio pratico e accogliente durante il percorso accademico. Con il suo design intelligente e la sua comoda posizione, questo monolocale è perfetto per gli studenti che desiderano concentrarsi sui loro obiettivi di apprendimento in un ambiente comodo e ben attrezzato.",
             'rooms'           => 2,
             'beds'            => 1,
             'bathrooms'       => 1,
@@ -81,6 +88,7 @@ return
         ],
         [
             'title'           => 'Baita sul Fiume',
+            'description'     => "La nostra baita sul fiume è un incantevole rifugio immerso nella natura, situato sulle rive di un fiume sereno. Questa baita offre un'esperienza unica di connessione con la natura e la bellezza del paesaggio fluviale circostante. Con una struttura rustica e accogliente, è il luogo ideale per chi cerca pace e tranquillità lontano dalla frenesia della città. All'interno, troverai un ambiente caldo e confortevole con travi a vista e arredi in legno che catturano il fascino dei cottage di montagna. L'ampio terrazzo offre una vista mozzafiato sul fiume, ideale per momenti di relax all'aperto o per godere di un pasto al fresco. La nostra baita sul fiume è il rifugio perfetto per coloro che desiderano scappare dalla routine quotidiana e immergersi completamente nella bellezza della natura circostante, ascoltando il mormorio delle acque del fiume e respirando l'aria fresca della montagna.",
             'rooms'           => 4,
             'beds'            => 2,
             'bathrooms'       => 1,
@@ -92,6 +100,7 @@ return
         ],
         [
             'title'           => 'Cottage sul lago',
+            'description'     => "Il nostro cottage sul lago è un'oasi di serenità situata sulle rive di un lago cristallino. Questo affascinante rifugio offre una fuga perfetta dalla vita quotidiana, immersa nella bellezza della natura lacustre. Il cottage presenta un design rustico e accogliente, con travi a vista e arredi in legno che catturano il fascino dei cottage tradizionali. Le ampie finestre si affacciano direttamente sul lago, offrendo una vista panoramica mozzafiato che può essere ammirata sia dal comfort del soggiorno che dalla terrazza privata. L'ambiente tranquillo e silenzioso è ideale per il relax, la pesca, il nuoto o per esplorare la natura circostante. Il nostro cottage sul lago rappresenta la destinazione ideale per chi cerca una fuga romantica o un luogo dove staccare la spina e riconnettersi con la bellezza della vita all'aria aperta.",
             'rooms'           => 6,
             'beds'            => 3,
             'bathrooms'       => 2,
@@ -103,6 +112,7 @@ return
         ],
         [
             'title'           => 'Loft Bella Vita',
+            'description'     => "Il nostro Loft Bella Vita è un'esperienza straordinaria di vita in un loft urbano, dove lo stile e la raffinatezza si fondono in un'unica soluzione abitativa. Situato nel cuore della città, questo loft rappresenta l'epitome della vita cosmopolita, offrendo uno spazio moderno e spettacolare per coloro che cercano il meglio della vita cittadina. Il design open-space e la vista panoramica sulla città creano un'atmosfera di lusso e comfort senza pari. Le finiture di alta qualità, gli arredi di design e i dettagli curati rendono questo loft un'oasi di eleganza e stile. Con negozi di lusso, ristoranti di classe mondiale e attrazioni culturali a pochi passi di distanza, Il nostro Loft Bella Vita è la scelta ideale per chi desidera immergersi completamente nella vibrante scena cittadina. Questo loft rappresenta un sogno urbano realizzato, dove ogni giorno è una celebrazione della 'bella vita' in un ambiente eccezionale.",
             'rooms'           => 7,
             'beds'            => 4,
             'bathrooms'       => 2,
@@ -114,6 +124,8 @@ return
         ],
         [
             'title'           => 'Casa in montagna',
+            'description'     => "
+            La nostra casa in montagna è un accogliente rifugio situato tra le vette maestose delle montagne. Questa casa offre una fuga perfetta dalla frenesia della vita quotidiana, immergendo i suoi ospiti nella tranquillità e nella bellezza della natura montana. Caratterizzata da un design rustico e affascinante, la casa presenta travi a vista, un camino accogliente e arredi in legno che creano un'atmosfera calda e accogliente. Le ampie finestre si aprono su spettacolari panorami montani, offrendo la possibilità di godere di splendide albe e tramonti. Con sentieri escursionistici, attività all'aperto e aria fresca di montagna a portata di mano, La nostra casa in montagna è il rifugio perfetto per chi cerca avventura, relax o semplicemente una pausa dallo stress quotidiano. Questa casa rappresenta il luogo ideale per riconnettersi con la natura e vivere momenti indimenticabili in uno scenario montano incantevole.",
             'rooms'           => 5,
             'beds'            => 2,
             'bathrooms'       => 1,
@@ -125,6 +137,7 @@ return
         ],
         [
             'title'           => 'Casa in campagna',
+            'description'     => "La nostra casa in campagna è un idilliaco rifugio situato in mezzo alla serenità e alla bellezza della campagna. Questa affascinante dimora offre un'esperienza di vita lontano dal trambusto della città, circondata da campi verdi, alberi maestosi e un'atmosfera di pace. Il design rustico della casa, con travi a vista e dettagli in legno, cattura il fascino e l'autenticità della vita rurale. All'interno, gli spazi sono accoglienti e confortevoli, offrendo un luogo dove rilassarsi davanti al camino o cucinare deliziosi pasti con ingredienti freschi provenienti dalla campagna circostante. L'ampio giardino e la vista panoramica sulla campagna invitano a trascorrere tempo all'aria aperta, praticando passeggiate, coltivando un orto o semplicemente godendosi la quiete. La nostra casa in campagna è il rifugio perfetto per chi desidera una vita semplice, vicina alla natura e alle tradizioni rurali, lontano dallo stress della vita moderna. È il luogo dove la bellezza della campagna incontra il comfort di una casa accogliente.",
             'rooms'           => 5,
             'beds'            => 2,
             'bathrooms'       => 1,
