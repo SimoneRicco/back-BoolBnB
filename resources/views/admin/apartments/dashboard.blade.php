@@ -4,11 +4,11 @@
         <!-- Mostra il messaggio di accesso -->
         <div class="p-6 text-gray-900 dark:text-gray-100 flex">
             <h1 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Dashboard') }}
+            BoolMail
             </h1>
             <div class="mx-4 border-r border-gray-400"></div>
             <h3>
-                {{ __("You're logged in!") }}
+                Inbox
             </h3>
         </div>
     </x-slot>
