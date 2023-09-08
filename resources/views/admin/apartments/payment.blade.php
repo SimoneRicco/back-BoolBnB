@@ -10,7 +10,7 @@
     @endif
 
 
-    <p>Card number to use: 4111111111111111</p>
+    <p class="dark:text-white">Card number to use: 4111111111111111</p>
     <p>{{ $apartment->id }}</p>
     <form action="{{ route('admin.apartments.checkout', ['apartment' => $apartment]) }}" method="post" id="braintree-form">
         @csrf

@@ -88,12 +88,49 @@ class BraintreeController extends Controller
 
         return view('admin.apartments.receives', compact('apartments'));
     }
-    public function show($slug)
-    {
-        $apartment = Apartment::where('slug', $slug)->firstOrFail();
-        $receive = ApartmentSponsor::where('apartment_id', $apartment->id);
-        return view('admin.apartments.checkout')->with([
-            'results' => $receive,
-        ]);
-    }
+    // public function show(Request $request)
+    // {
+    //     $gateway = new Gateway([
+    //         'environment' => env('BRAINTREE_ENVIRONMENT'),
+    //         'merchantId' => env("BRAINTREE_MERCHANT_ID"),
+    //         'publicKey' => env("BRAINTREE_PUBLIC_KEY"),
+    //         'privateKey' => env("BRAINTREE_PRIVATE_KEY")
+    //     ]);
+    //     // dd($data);
+    //     $nonceFromTheClient  = $request['payment_method_nonce'];
+    //     $sponsor = Sponsor::find($request['sponsor-plan']);
+    //     $apartment = Apartment::where('slug', $request['apartment'])->firstOrFail();
+
+    //     $result = $gateway->transaction()->sale([
+    //         'amount' => $sponsor->price,
+    //         // 'amount' => 2500,
+    //         'paymentMethodNonce' => $nonceFromTheClient,
+    //         // 'deviceData' => $deviceDataFromTheClient,
+    //         'options' => [
+    //             'submitForSettlement' => True
+    //         ]
+    //     ]);
+    //     // dd($sponsor);
+    //     if ($result->success) {
+    //         if ($apartment->sponsors()->where('valid', true)->count() > 0) {
+
+    //             $apartment->sponsors()->where('valid', true)->update([
+    //                 'expire_date' => DB::raw('DATE_ADD(expire_date, INTERVAL ' . $sponsor->duration . ' DAY)'),
+    //             ]);
+    //         } else { //se non esise una sponsorizzazione attiva
+    //             $apartment->sponsors()->attach($sponsor->id, [
+    //                 'subscription_date' => now(), // Imposta la data corrente
+    //                 'expire_date' => (now()->addDays($sponsor->duration)),
+    //                 'price' => $result->transaction->amount,
+    //                 'order_code' => $result->transaction->id,
+    //             ]);
+    //         }
+    //         return view('admin.apartments.checkout')->with([
+    //             'result' => $result,
+    //             'sponsor' => $sponsor
+    //         ]);
+    //     } else { //errore transazione
+    //         return redirect()->route('admin.apartments.payment')->with('transition_error', $result->message);
+    //     }
+    // }
 }

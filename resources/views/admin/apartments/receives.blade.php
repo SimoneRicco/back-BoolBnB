@@ -22,15 +22,17 @@
                     <col>
                     <col>
                     <col>
-                    <col class="w-24">
+                    <col>
+                    {{-- <col class="w-24"> --}}
                 </colgroup>
                 <thead class="dark:bg-gray-700">
                     <tr class="text-left">
                         <th class="p-3 text-blue-600/100">Titolo</th>
                         <th class="p-3 text-blue-600/100">Sponsors</th>
+                        <th class="p-3 text-blue-600/100">is Sponsored?</th>
                         <th class="p-3 text-blue-600/100">Data di sottoscrizione</th>
                         <th class="p-3 text-blue-600/100">Data di scadenza</th>
-                        <th class="p-3 text-center text-blue-600/100">Actions</th>
+                        {{-- <th class="p-3 text-center text-blue-600/100">Actions</th> --}}
                     </tr>
                 </thead>
                 <tbody>
@@ -41,7 +43,14 @@
                             <p>{{ $apartment->title }}</p>
                         </td>
                         <td class="p-3">
-                            <p>{{ implode(', ', $apartment->sponsors->pluck('type')->all()) }}</p>
+                            {{ implode(', ', $apartment->sponsors->pluck('type')->all()) }}
+                        </td>
+                        <td class="p-3">
+                            @if ($apartment->sponsors->isNotEmpty())
+                                <p>Yes</p>
+                            @else
+                                <p>No</p>
+                            @endif
                         </td>
                         <td class="p-3">
                             <p>{{ implode(', ', $apartment->sponsors()->pluck('subscription_date')->all()) }}</p>
@@ -49,11 +58,11 @@
                         <td class="p-3">
                             <p>{{ implode(', ', $apartment->sponsors()->pluck('expire_date')->all()) }}</p>
                         </td>
-                        <td class="p-3">
+                        {{-- <td class="p-3">
                             <div class="flex justify-center gap-4">
-                                <button class="px-7 py-1 font-semibold border rounded dark:border-gray-100 dark:text-gray-100" onclick="window.location='{{ route('admin.apartments.receive', ['apartment' => $apartment]) }}'">Show</button>
+                                <button class="px-7 py-1 font-semibold border rounded dark:border-gray-100 dark:text-gray-100" onclick="window.location='{{ route('admin.apartments.checkout', ['apartment' => $apartment]) }}'">Show</button>
                             </div>
-                        </td>
+                        </td> --}}
                     </tr>
                     @endif
                     @endforeach
