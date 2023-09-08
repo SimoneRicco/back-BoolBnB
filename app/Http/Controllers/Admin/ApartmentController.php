@@ -144,7 +144,7 @@ class ApartmentController extends Controller
         }
 
         $utilities = Utility::all();
-        $images = Image::all();
+        $images = Image::where('apartment_id', $apartment->id)->get();
         $addresses = Address::all();
         $views = View::all();
         $sponsors = Sponsor::all();
@@ -177,33 +177,35 @@ class ApartmentController extends Controller
         $address->longitude = $data['longitude'];
         $address->save();
 
-        foreach ($request->file('images') as $index => $imageFile) {
-            $newImage = new Image();
-            $newImage->name = $imageFile->getClientOriginalName();
-
-            // Imposta il valore di 'cover_image' in base all'indice selezionato
-            $newImage->cover_image = $index === (int)$coverImageIndex;
-
-            // Esegui la logica per salvare l'immagine e associarla all'appartamento
-            $newImage->apartment()->associate($apartment); // Utilizza $apartment invece di $newApartment
-
-            // Salva fisicamente l'immagine nel percorso desiderato
-            $imagePath = $newImage->id . '_' . $imageFile->getClientOriginalName();
-            $imageFile->storeAs('uploads', $imagePath); // Rimuovi 'uploads/' dal percorso
-
-            // Assegna l'URL dell'immagine (senza il percorso completo)
-            $newImage->url = $imagePath;
-
-            $newImage->save();
-
-            // Se questa immagine è selezionata come immagine di copertina, aggiorna tutte le altre immagini
-            if ($newImage->cover_image) {
-                Image::where('apartment_id', $apartment->id) // Utilizza $apartment->id invece di $newApartment->id
-                    ->where('id', '!=', $newImage->id)
-                    ->update(['cover_image' => false]);
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $index => $imageFile) {
+                $newImage = new Image();
+                $newImage->name = $imageFile->getClientOriginalName();
+        
+                // Imposta il valore di 'cover_image' in base all'indice selezionato
+                $newImage->cover_image = $index === (int)$coverImageIndex;
+        
+                // Esegui la logica per salvare l'immagine e associarla all'appartamento
+                $newImage->apartment()->associate($apartment);
+        
+                // Salva fisicamente l'immagine nel percorso desiderato
+                $imagePath = $newImage->id . '_' . $imageFile->getClientOriginalName();
+                $imageFile->storeAs('uploads', $imagePath);
+        
+                // Assegna l'URL dell'immagine (senza il percorso completo)
+                $newImage->url = $imagePath;
+        
+                $newImage->save();
+        
+                // Se questa immagine è selezionata come immagine di copertina, aggiorna tutte le altre immagini
+                if ($newImage->cover_image) {
+                    Image::where('apartment_id', $apartment->id)
+                        ->where('id', '!=', $newImage->id)
+                        ->update(['cover_image' => false]);
+                }
             }
         }
-
+        
         return redirect()->route('admin.apartments.show', ['apartment' => $apartment]);
     }
 

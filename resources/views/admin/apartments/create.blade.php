@@ -81,8 +81,17 @@
             </div>
             
             <div style="display: flex; align-items: center;">
+<<<<<<< HEAD
                 <input type="file" name="images[]" id="imageInput" multiple class=" dark:text-white">
+=======
+                <input type="file" name="images[]" id="imageInput" multiple class="text-white @error('images') border-red-500 @enderror">
+>>>>>>> origin/fixImagesEdit
                 <button id="clearImages" type="button" style="background-color: white; border: none;">Clear All</button>
+                @error('images[]')
+                <div class="text-red-500 text-xs mt-1">
+                    {{ $message }}
+                </div>
+                @enderror
             </div>
             <div id="imagePreviews" class="mt-3 space-y-3 flex"></div>
             
@@ -217,13 +226,43 @@
                 </div>
             </div>
 
+<<<<<<< HEAD
             <label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Descrizione</label>
             <textarea id="description" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Write your description here..." name="description">{{ old('description') }}</textarea>
 
             <div class="my-4">
                 <button type="submit" class="px-4 py-2 text-white bg-green-700 rounded" id="create-new-apartment">Invia</button>
+=======
+            <div class="mb-4">
+                <button type="submit" class="px-4 py-2 text-white bg-green-700 rounded" id="create-new-apartment" onclick="disableSubmitButton()">Invia</button>
+>>>>>>> origin/fixImagesEdit
             </div>
             <script>
+                
+                let isSubmitting = false; // Variabile di stato per il controllo dell'invio
+
+                document.querySelector('form').addEventListener('submit', function (e) {
+                if (isSubmitting) {
+                    e.preventDefault(); // Impedisce l'invio duplicato del modulo
+                    return;
+                }
+
+                // Imposta lo stato di invio su true per disabilitare il pulsante
+                isSubmitting = true;
+
+                // Disabilita il pulsante di invio
+                document.getElementById('create-new-apartment').disabled = true;
+                
+            });
+            // Dopo aver gestito la richiesta di invio del modulo
+            // Riabilita il pulsante di invio e reimposta lo stato di invio
+            document.getElementById('create-new-apartment').disabled = false;
+            isSubmitting = false;
+
+
+            </script>
+            <script>
+                
                 async function apiCall(addr) {
                     try {
                         const response = await fetch(`https://api.tomtom.com/search/2/search/${addr}.json?key=ndHFeyzbDlb3RqfpAT5GGO7XqIcEf1DC`);
