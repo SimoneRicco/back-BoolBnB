@@ -201,21 +201,15 @@
                 </div>
             </div>
                 
-            <label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Descrizione</label>
-            <textarea id="description" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Write your description here..." name="description">{{ old('description', $apartment->description) }}</textarea>
-
-<<<<<<< HEAD
-            <div class="my-4">
-                <button type="submit" class="px-4 py-2 text-white bg-green-700 rounded">Invia</button>
-=======
-
+            
             <div class="mb-4">
-                <button type="submit" class="px-4 py-2 text-white bg-green-700 rounded" onclick="disableSubmitButton()">Invia</button>
-<<<<<<< HEAD
-=======
->>>>>>> origin/fixImagesEdit
->>>>>>> b33d66c51db02dfe78e1e44e3a65ee6a99b62aa0
-            </div>
+                <label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Descrizione</label>
+                <textarea id="description" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Write your description here..." name="description">{{ old('description', $apartment->description) }}</textarea>
+                
+                <div class="my-4">
+                    <button type="submit" class="px-4 py-2 text-white bg-green-700 rounded" onclick="disableSubmitButton()">Invia</button>
+                </div>
+            </div>    
             <script>
                 let isSubmitting = false; // Variabile di stato per il controllo dell'invio
 
