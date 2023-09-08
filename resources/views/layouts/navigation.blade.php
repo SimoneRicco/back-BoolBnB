@@ -5,7 +5,7 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-end mt-3">
-                    <a href="{{ route('guest.home') }}">
+                    <a href="http://localhost:5173/">
                         <x-application-logo class="block h-9 w-auto fill-current text-gray-800 dark:text-gray-200" />
                     </a>
                 </div>
@@ -29,6 +29,9 @@
                     <x-nav-link :href="route('admin.apartments.receives')" :active="request()->routeIs('Your Receives')">
                         {{ __('Your Receives') }}
                     </x-nav-link>
+                    {{-- <x-nav-link href="http://localhost:5173/">
+                        {{ __('To Front') }}
+                    </x-nav-link> --}}
                 </div>
             </div>
 
