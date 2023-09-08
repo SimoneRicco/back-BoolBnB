@@ -211,6 +211,9 @@
 
             <div class="mb-4">
                 <button type="submit" class="px-4 py-2 text-white bg-green-700 rounded" onclick="disableSubmitButton()">Invia</button>
+<<<<<<< HEAD
+>>>>>>> origin/fixImagesEdit
+=======
 >>>>>>> origin/fixImagesEdit
             </div>
             <script>
