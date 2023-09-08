@@ -212,9 +212,15 @@
             <div class="mb-4">
                 <button type="submit" class="px-4 py-2 text-white bg-green-700 rounded" onclick="disableSubmitButton()">Invia</button>
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> origin/fixImagesEdit
 =======
 >>>>>>> origin/fixImagesEdit
+=======
+=======
+>>>>>>> origin/fixImagesEdit
+>>>>>>> b33d66c51db02dfe78e1e44e3a65ee6a99b62aa0
+>>>>>>> 2b5d0cbf33d2bba117d77b000c6c85e75f51ce79
             </div>
             <script>
                 let isSubmitting = false; // Variabile di stato per il controllo dell'invio
