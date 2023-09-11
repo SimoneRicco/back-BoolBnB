@@ -19,7 +19,7 @@
             <table class="min-w-full text-xs">
                 <colgroup>
                     <col>
-                    <col>
+                    <col class="hidden md:table-cell">
                     <col>
                     <col>
                     <col>
@@ -28,7 +28,7 @@
                 <thead class="dark:bg-gray-700">
                     <tr class="text-left">
                         <th class="p-3 text-blue-600/100">Titolo</th>
-                        <th class="p-3 text-blue-600/100">Sponsors</th>
+                        <th class="p-3 hidden md:table-cell text-blue-600/100">Sponsors</th>
                         <th class="p-3 text-blue-600/100">is Sponsored?</th>
                         <th class="p-3 text-blue-600/100">Data di sottoscrizione</th>
                         <th class="p-3 text-blue-600/100">Data di scadenza</th>
@@ -42,7 +42,7 @@
                         <td class="p-3">
                             <p>{{ $apartment->title }}</p>
                         </td>
-                        <td class="p-3">
+                        <td class="p-3 hidden md:table-cell">
                             {{ implode(', ', $apartment->sponsors->pluck('type')->all()) }}
                         </td>
                         <td class="p-3">

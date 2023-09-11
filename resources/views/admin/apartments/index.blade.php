@@ -19,21 +19,21 @@
             <table class="min-w-full text-xs">
                 <colgroup>
                     <col>
-                    <col>
-                    <col>
-                    <col>
-                    <col>
+                    <col class="hidden md:table-cell">
+                    <col class="hidden md:table-cell">
+                    <col class="hidden md:table-cell">
+                    <col class="hidden md:table-cell">
                     <col class="w-24">
                 </colgroup>
                 <thead class="dark:bg-gray-700">
                     <tr class="text-left">
                         <th class="p-3 text-blue-600/100">Titolo</th>
-                        <th class="p-3 text-blue-600/100">Camere</th>
-                        <th class="p-3 text-blue-600/100">Letti</th>
-                        <th class="p-3 text-blue-600/100">Bagni</th>
-                        <th class="p-3 text-blue-600/100">Metri quadrati</th>
-                        <th class="p-3 text-blue-600/100">Indirizzo</th>
-                        <th class="p-3 text-blue-600/100">Utilities</th>   
+                        <th class="p-3 hidden md:table-cell text-blue-600/100">Camere</th>
+                        <th class="p-3 hidden md:table-cell text-blue-600/100">Letti</th>
+                        <th class="p-3 hidden md:table-cell text-blue-600/100">Bagni</th>
+                        <th class="p-3 hidden md:table-cell text-blue-600/100">Metri quadrati</th>
+                        <th class="p-3 hidden md:table-cell text-blue-600/100">Indirizzo</th>
+                        <th class="p-3 hidden md:table-cell text-blue-600/100">Utilities</th>   
                         <th class="p-3 text-center text-blue-600/100">Actions</th>
                     </tr>
                 </thead>
@@ -44,24 +44,24 @@
                         <td class="p-3">
                             <p>{{ $apartment->title }}</p>
                         </td>
-                        <td class="p-3">
+                        <td class="p-3 hidden md:table-cell">
                             <p>{{ $apartment->rooms }}</p>
                         </td>
-                        <td class="p-3">
+                        <td class="p-3 hidden md:table-cell">
                             <p>{{ $apartment->beds }}</p>
                         </td>
-                        <td class="p-3">
+                        <td class="p-3 hidden md:table-cell">
                             <p>{{ $apartment->bathrooms }}</p>
                         </td>
-                        <td class="p-3">
+                        <td class="p-3 hidden md:table-cell">
                             <p>{{ $apartment->square_meters }}</p>
                         </td>
                         
-                        <td class="p-3">
+                        <td class="p-3 hidden md:table-cell">
                             <p>{{ $apartment->address->address }}</p>
                         </td>
 
-                        <td class="p-3">
+                        <td class="p-3 hidden md:table-cell">
                             {{ implode(', ', $apartment->utilities->pluck('name')->all()) }}
                         </td>
                         

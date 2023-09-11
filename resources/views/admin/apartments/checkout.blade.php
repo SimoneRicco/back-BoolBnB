@@ -21,7 +21,7 @@
         </div>
         <div class="font-semibold text-xl px-8 flex justify-between py-8 text-gray-600">
             <span>Total</span>
-            <span>{{$result->transaction->amount}}</span>
+            <span>{{$result->transaction->amount}}$</span>
         </div>
     </div>
     <script>
