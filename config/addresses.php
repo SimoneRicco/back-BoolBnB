@@ -27,8 +27,8 @@ return [
     ],
     [
         'apartment_id' => '5',
-        'latitude'     => '',
-        'longitude'    => '',
+        'latitude'     => '43.7757925',
+        'longitude'    => '11.2239889',
         'address'      => 'Via del Franciabigio, 12, 50142 Firenze FI',
     ],
     [
