@@ -77,7 +77,7 @@
                             {{ implode(', ', $apartment->sponsors->pluck('type')->all()) }}
                         </td> --}}
                         <td class="p-3">
-                            <div class="flex flex-col space-y-2 sm:flex-row sm:justify-center sm:space-x-4 sm:space-y-0 flex-wrap">
+                            <div class="flex flex-col space-y-2 sm:flex-row sm:justify-center sm:space-x-4 sm:space-y-0">
                                 <button class="px-7 py-1 font-semibold border rounded dark:border-gray-100 dark:text-gray-100" onclick="window.location='{{ route('admin.apartments.payment', ['apartment' => $apartment]) }}'">Sponsorize</button>
                                 <button class="px-7 py-1 font-semibold border rounded dark:border-gray-100 dark:text-gray-100" onclick="window.location='{{ route('admin.apartments.show', ['apartment' => $apartment]) }}'">Info</button>
                                 <button class="px-7 py-1 font-semibold border rounded dark:border-gray-100 dark:text-gray-100" onclick="window.location='{{ route('admin.apartments.edit', ['apartment' => $apartment]) }}'">Edit</button>
