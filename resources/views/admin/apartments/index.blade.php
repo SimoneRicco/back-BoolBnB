@@ -61,8 +61,16 @@
                             <p>{{ $apartment->address->address }}</p>
                         </td>
 
-                        <td class="p-3 hidden md:table-cell">
+                        {{-- <td class="p-3 hidden md:table-cell">
                             {{ implode(', ', $apartment->utilities->pluck('name')->all()) }}
+                        </td> --}}
+
+                        <td class="p-3 hidden md:table-cell">
+                            <ul class="divide-y list-none">
+                                @foreach ($apartment->utilities as $utility)
+                                    <li>{{ $utility->name }}</li>
+                                @endforeach
+                            </ul>
                         </td>
                         
                         {{-- <td class="p-3">
