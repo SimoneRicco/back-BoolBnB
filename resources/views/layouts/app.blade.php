@@ -8,7 +8,11 @@
     />
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+        <title>{{ config('app.name', 'HavenTrip') }}</title>
+
+        <link rel="icon" href="{{ asset('storage/uploads/compass.png') }}" type="image/x-icon" />
+        <link rel="shortcut icon" href="{{ asset('storage/uploads/compass.png') }}" type="image/x-icon" />
+
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
