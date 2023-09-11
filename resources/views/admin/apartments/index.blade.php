@@ -23,7 +23,6 @@
                     <col>
                     <col>
                     <col>
-                    {{-- <col> --}}
                     <col class="w-24">
                 </colgroup>
                 <thead class="dark:bg-gray-700">
@@ -34,8 +33,7 @@
                         <th class="p-3 text-blue-600/100">Bagni</th>
                         <th class="p-3 text-blue-600/100">Metri quadrati</th>
                         <th class="p-3 text-blue-600/100">Indirizzo</th>
-                        <th class="p-3 text-blue-600/100">Utilities</th>
-                        {{-- <th class="p-3 text-blue-600/100">Sponsors</th> --}}
+                        <th class="p-3 text-blue-600/100">Utilities</th>   
                         <th class="p-3 text-center text-blue-600/100">Actions</th>
                     </tr>
                 </thead>
@@ -71,18 +69,18 @@
                             {{ implode(', ', $apartment->sponsors->pluck('type')->all()) }}
                         </td> --}}
                         <td class="p-3">
-                            <div class="flex justify-center gap-4">
+                            <div class="flex flex-col space-y-2 sm:flex-row sm:justify-center sm:space-x-4 sm:space-y-0 flex-wrap">
                                 <button class="px-7 py-1 font-semibold border rounded dark:border-gray-100 dark:text-gray-100" onclick="window.location='{{ route('admin.apartments.payment', ['apartment' => $apartment]) }}'">Sponsorize</button>
                                 <button class="px-7 py-1 font-semibold border rounded dark:border-gray-100 dark:text-gray-100" onclick="window.location='{{ route('admin.apartments.show', ['apartment' => $apartment]) }}'">Info</button>
                                 <button class="px-7 py-1 font-semibold border rounded dark:border-gray-100 dark:text-gray-100" onclick="window.location='{{ route('admin.apartments.edit', ['apartment' => $apartment]) }}'">Edit</button>
                                 <form class="d-inline-block" method="POST" action="{{ route('admin.apartments.destroy', ['apartment' => $apartment]) }}">
                                     @csrf
                                     @method('delete')
-                                    <button class="px-7 py-1 font-semibold border rounded dark:border-gray-100 dark:text-gray-100" onclick="window.location='{{ route('admin.apartments.destroy', ['apartment' => $apartment]) }}'">delete</button>
+                                    <button class="px-7 py-1 font-semibold border rounded dark:border-gray-100 dark:text-gray-100" onclick="window.location='{{ route('admin.apartments.destroy', ['apartment' => $apartment]) }}'">Delete</button>
                                 </form>
-                                
                             </div>
                         </td>
+                        
                     </tr>
                     @endif
                     @endforeach

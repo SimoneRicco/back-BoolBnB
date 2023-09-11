@@ -88,11 +88,24 @@
     </div>
 
     <!-- Responsive Navigation Menu -->
-    <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
-        <div class="pt-2 pb-3 space-y-1">
+    <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden sm:flex flex-col">
+        <div class="p-4 space-y-1">
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
+            <x-nav-link :href="route('admin.apartments.index')" :active="request()->routeIs('apartments')">
+                {{ __('Apartments') }}
+            </x-nav-link>
+            <x-nav-link :href="route('admin.apartments.trashed')" :active="request()->routeIs('Bin')">
+                {{ __('Bin') }}
+            </x-nav-link>
+        
+            <x-nav-link :href="route('admin.apartments.create')" :active="request()->routeIs('New Apartment')">
+                {{ __('New Apartment') }}
+            </x-nav-link>
+            <x-nav-link :href="route('admin.apartments.receives')" :active="request()->routeIs('Your Receives')">
+                {{ __('Your Receives') }}
+            </x-nav-link>
         </div>
 
         <!-- Responsive Settings Options -->
