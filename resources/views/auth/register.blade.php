@@ -4,7 +4,7 @@
 
         <div class="mt-4">
             <x-input-label for="image" :value="__('Profile Picture')" />
-            <input id="image" type="file" name="image" accept="image/*" />
+            <input id="image" type="file" name="image" accept="image/*" class="dark:text-white" />
             <x-input-error class="mt-2" :messages="$errors->get('image')" />
         </div>
 
